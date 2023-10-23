@@ -49,11 +49,11 @@ getWorks();
 //Remplacer innerHTML par createElement
 filter.innerHTML = '<div class="button selected" data-idCategorie="0">Tous</div>' +
     ListCategories
-        .map(category => {
-            //On utilise createElement
-            console.log(category)
-                `<div class="button" id="${category.name}">${category.name}</div>`
-        })
+        .map(category) => {
+    //On utilise createElement
+    console.log(category)
+        `<div class="button" id="${category.name}">${category.name}</div>`
+}
         //Plus dbesoin d'utiliser join −>
         .join(""); //Creer et renvoi une nouvelle CDC en Concatenant tous les éléments 
 
