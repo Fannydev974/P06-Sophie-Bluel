@@ -233,17 +233,22 @@ li:hover {
 	margin: 50px 0;
 }
 
-.button {
+.btnFilter {
+	margin-left: 4%;
 	display: flex;
-	align-items: center;
+	justify-content: center;
+	gap: 1%;
+
+}
+
+.buttonName {
 	border: 1px #1D6154 solid;
 	border-radius: 60px;
-	color: #1D6154;
 	background: #fff;
-	height: 28px;
 	font-family: "Syne", sans-serif;
 	font-weight: 700;
 	font-size: 16px;
+	height: 19px;
 	text-align: center;
 	padding: 3px 20px;
 	cursor: pointer;

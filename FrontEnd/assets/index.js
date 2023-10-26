@@ -3,7 +3,7 @@
 let listGallery = [];
 let listCategories = [];
 
-//Fonction getWorks pour récuperer des travaux
+//Fonction getWorks pour récuperer les travaux
 const getWorks = async () => {
     try {
         const responseWorks = await fetch("http://localhost:5678/api/works");
@@ -33,8 +33,8 @@ const createCategory = () => {
     const buttonAll = document.createElement("span");
     buttonAll.innerText = "Tous";
     buttonAll.classList.add("buttonName");
-    //Modifier le nom de l'attribut //setAttribute fix la valeur d'un attribut sur l'élément spécifié 
-    buttonAll.setAttribute("nameCategorie", 0)
+    //Modifier le nom de l'attribut //setAttribute fix la valeur de l'attribut "button" sur l'élément spécifié "buttonAll"
+    buttonAll.setAttribute("button", 0)
     filter.appendChild(buttonAll);
 
 
@@ -44,7 +44,7 @@ const createCategory = () => {
                 console.log(category)
                 const buttonName = document.createElement("span");
                 buttonName.innerText = category.name;
-                buttonName.setAttribute("nameCategorie", category.name)
+                buttonName.setAttribute("button", category.name)
                 //Ajouter un attribut idCategorie comme ci-dessus
                 buttonName.classList.add("buttonName");
                 filter.appendChild(buttonName);
@@ -63,11 +63,11 @@ const createCategory = () => {
             console.log(event.target) //Récupération de l'élèment html via event.target
             const spanFilter = event.target
             // const idCategorie = Récupérer idCtageorie de l'event.target
-            const nameCategorie = spanFilter.getAttribute("nameCategorie")//getAttribut pour obtenir la valeur courante d'un attribut
-            console.log(nameCategorie)
+            const buttonSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur courante d'un attribut
+            console.log(buttonSelected)
             //Ne plus utiliser i mais la const idCatgeorie
-            if (i !== 0) {
-                const listGalleryFilter = listGallery.filter(el => el.categoryId == i); //Ne plus utiliser i mais la const idCatgeorie
+            if (buttonSelected !== 0) {
+                const listGalleryFilter = listGallery.filter(el => el.categoryId == buttonSelected); //Ne plus utiliser i mais la const idCatgeorie
                 createGallery(listGalleryFilter);
             } else {
                 createGallery(listGallery);
@@ -81,9 +81,26 @@ const createCategory = () => {
 
 
 //Tout ce qui se passe dans la fonction ne dépend que de la variable arrayGallery et des autres élèments crée à l'intérieur
-function createGallery(arrayGallery) {
-    console.log(arrayGallery)
+
+//function createGallery(arrayGallery)
+// Mise en place de la class active sur le premier bouton
+//let firstButtonsSelected = document.querySelector(".buttonName");
+//firstButtonsSelected.classList.add("active");
+
+let gallery = document.querySelector(".gallery");
+
+
+const arrayGallery = [gallery];
+//boucle pour filtrer au click des boutons
+for (const gallery of arrayGallery) {
+    console.log(gallery);
 }
+
+
+
+
+
+
 
 
 
