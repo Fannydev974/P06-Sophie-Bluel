@@ -326,3 +326,63 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+/***********Page Login**********/
+.login {
+	width: 75%;
+	margin: auto;
+}
+
+.formulaire {
+	width: 50%;
+	margin: auto;
+	color: #3D3D3D;
+}
+
+.formulaire {
+	text-align: center;
+
+}
+
+.formulaire h2 {
+	margin-bottom: 20px;
+}
+
+.formulaire form {
+	text-align: left;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.formulaire input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.formulaire label {
+	margin: 2em 0 1em 0;
+}
+
+.formulaire textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.formulaire a {
+	text-align: center;
+	color: #3D3D3D;
+}
+
+input[type="submit"] {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin: 2em auto;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px;
+}

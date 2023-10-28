@@ -37,88 +37,98 @@ const createCategory = () => {
     buttonAll.setAttribute("button", 0)
     filter.appendChild(buttonAll);
 
-
+    //création des autres boutons (objet,appartements,hôtels et restaurants)
     listCategories
         .map(
             (category) => {
-                console.log(category)
+                //console.log(category)
                 const buttonName = document.createElement("span");
                 buttonName.innerText = category.name;
                 buttonName.setAttribute("button", category.name)
                 //Ajouter un attribut idCategorie comme ci-dessus
                 buttonName.classList.add("buttonName");
                 filter.appendChild(buttonName);
-                console.log(buttonName)
+                //console.log(buttonName)
             }
 
         )
-
-    //Tableau arrayFilter
-    const arrayFilters = document.querySelectorAll(".buttonName");
-
-
-    for (const spanFilter of arrayFilters) {
-
-        spanFilter.addEventListener("click", (event) => {
-            console.log(event.target) //Récupération de l'élèment html via event.target
-            const spanFilter = event.target
-            // const idCategorie = Récupérer idCtageorie de l'event.target
-            const buttonSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur courante d'un attribut
-            console.log(buttonSelected)
-            //Ne plus utiliser i mais la const idCatgeorie
-            if (buttonSelected !== 0) {
-                const listGalleryFilter = listGallery.filter(el => el.categoryId == buttonSelected); //Ne plus utiliser i mais la const idCatgeorie
-                createGallery(listGalleryFilter);
-            } else {
-                createGallery(listGallery);
-            }
-            arrayFilters.forEach(btn => btn.classList.remove("selected"));
-            spanFilter.classList.add("selected");
-        });
-    }
-
 }
 
+//Tableau arrayFilter
+const arrayFilters = document.querySelectorAll(".buttonName");
+
+
+for (const spanFilter of arrayFilters) {
+
+    spanFilter.addEventListener("click", (event) => {
+        //console.log(event.target) //Récupération de l'élèment html via event.target
+        const spanFilter = event.target
+        // const idCategorie = Récupérer idcategorie de l'event.target
+        const buttonSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur courante d'un attribut
+        //console.log(buttonSelected)
+        //Ne plus utiliser i mais la const idCatgeorie
+        if (buttonSelected !== 0) {
+            galleryFilters = listGallery.filter(el => el.categoryId == buttonSelected); //Ne plus utiliser i mais la const idCatgeorie
+            createGallery(galleryFilters);
+        } else {
+            createGallery(listGallery);
+        }
+        arrayFilters.forEach(btn => btn.classList.remove("selected"));
+        spanFilter.classList.add("selected");
+    });
+}
+
+
+
+//fonction pour créer la gallerie et pouvoir supprimer la gallerie du HTML
+let gallery = document.createElement("div");
+gallery.classList.add("gallery");
+
+const createGallery = (arrayGallery) => {
+    gallery.innerHTML = arrayGallery
+        .map(
+            (img) =>
+                `<figure>
+    <img src=${img.imageUrl} alt=${img.title}>
+    <figcaption>${img.title}</figcaption>
+  </figure>
+  `)
+        .join("");
+    portfolio.appendChild(gallery);
+};
 
 //Tout ce qui se passe dans la fonction ne dépend que de la variable arrayGallery et des autres élèments crée à l'intérieur
 
+function filtersGallery() {
+    const arrayGallery = document.querySelectorAll(".buttonName");
+    arrayGallery.addEventListener("click", () => {
+        buttonSelected.forEach((btn) => {
+            if (btn === buttonSelected) {
+                btn.classList.add("active");
+            } else {
+                btn.classList.remove("active");
+            }
+        });
+    })
+
+}
+filtersGallery()
 //function createGallery(arrayGallery)
-// Mise en place de la class active sur le premier bouton
-//let firstButtonsSelected = document.querySelector(".buttonName");
-//firstButtonsSelected.classList.add("active");
-
-let gallery = document.querySelector(".gallery");
 
 
-const arrayGallery = [gallery];
-//boucle pour filtrer au click des boutons
-for (const gallery of arrayGallery) {
-    console.log(gallery);
+
+
+function galleryFilters(categoryId, buttonSelected) {
+    const filteredProjects = !categoryId ? buttonSelected : buttonSelected.filter(() => all.categoryId === categoryId);
+    arrayGallery(filteredProjects);
+    setSelectedFilter(buttonSelected);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-function filterProjects(categoryId, selectedbutton) {
- const filteredProjects = !categoryId ? allProjects : allProjects.filter(projects => projects.categoryId === categoryId);
- displayProjects(filteredProjects);
- setSelectedFilter(selectedbutton);
+function setSelectedFilter(buttonSelected) {
+    const buttons = document.querySelectorAll('.filter-buttons button');
+    buttons.forEach(button => {
+        button.classList.remove('buttonSelected');
+    });
+    buttonSelected.classList.add('buttonSelected');
 }
 
-function setSelectedFilter(selectedbutton) {
- const buttons = document.querySelectorAll('.filter-buttons button');
- buttons.forEach(button => {
-     button.classList.remove('filter-selected');
- });
- selectedbutton.classList.add('filter-selected');
-}
-*/
