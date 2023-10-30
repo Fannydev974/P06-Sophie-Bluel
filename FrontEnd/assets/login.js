@@ -15,21 +15,14 @@ async function login() {
              "Content-Type": "application/json",
          },
          body: JSON.stringify(user),
-     })*/
+     })
+      const btnForm = document.querySelector(".connexion");
+        btnForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            login();
+        });*/
 
-    /*.then((Response) => {
-        if (Response.ok) {
-            Response.json()
-                .then((data) => {
-                    const userdata = data.token;
-                    if (localStorage.user = userdata)
-                        document.location.href = ("edit.html");
-                })
-        } else {
-            document.querySelector(".error").innerHTML = "Erreur dans l’identifiant ou le mot de passe";
-        }
-    });
-}*/
+
     try {
         const response = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
@@ -38,10 +31,10 @@ async function login() {
             },
             body: JSON.stringify(AuthentificationData),
         });
-
+        switch (response)
 
         //Vérification de la réponse
-        if (Response.status === 401) {
+        /*if (Response.status === 401) {
             errorMessage.textContent = "Erreur, mot de passe incorrect.";
             errorMessage.style.Display = "block";
         } else if (Response.status === 404) {
@@ -59,9 +52,9 @@ async function login() {
                 //Changement du texte une fois connecté
                 deconnect();
             }
-        }
+        }*/
     } catch (error) {
-        //Message en cas d'erreur de requête où de connexion
-        console.error("erreur lors de la requête d'authentification:", error);
-    };
-}
+            //Message en cas d'erreur de requête où de connexion
+            console.error("erreur lors de la requête d'authentification:", error);
+        };
+    }

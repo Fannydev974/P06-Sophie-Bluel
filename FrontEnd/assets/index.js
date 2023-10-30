@@ -20,58 +20,6 @@ const getWorks = async () => {
 }
 getWorks();
 
-// Fonction pour créer les catégories et rendre fonctionnels les filtres
-const createCategorys = () => {
-    const filter = document.querySelector(".btnFilter");
-
-    // Création du bouton Tous
-    const buttonAll = document.createElement("span");
-    buttonAll.innerText = "Tous";
-    buttonAll.classList.add("buttonName");
-    //Modifier le nom de l'attribut //setAttribute fix la valeur de l'attribut "button" sur l'élément spécifié "buttonAll"
-    buttonAll.setAttribute("button", 0)
-    filter.appendChild(buttonAll);
-
-    //création des autres boutons (objet,appartements,hôtels et restaurants)
-    listCategories
-        .map(
-            (category) => {
-                //console.log(category)
-                const buttonName = document.createElement("span");
-                buttonName.innerText = category.name;
-                buttonName.setAttribute("button", category.name)
-                //Ajouter un attribut idCategorie comme ci-dessus
-                buttonName.classList.add("buttonName");
-                filter.appendChild(buttonName);
-                //console.log(buttonName)
-            }
-
-        )
-}
-
-//Tableau arrayFilter
-const arrayFilters = document.querySelectorAll(".buttonName");
-
-//spanFilter c'est le noeud qui contient tous mes boutons
-for (const spanFilter of arrayFilters) {
-
-    spanFilter.addEventListener("click", (event) => {
-        //console.log(event.target) //Récupération de l'élèment html via event.target
-        const spanFilter = event.target
-        // const idCategorie = Récupérer idcategorie de l'event.target
-        const buttonSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur courante d'un attribut
-        console.log(buttonSelected)
-        //Ne plus utiliser i mais la const idCatgeorie
-        if (buttonSelected !== 0) {
-            galleryFilters = listGallery.filter(el => el.categoryId === buttonSelected); //Ne plus utiliser i mais la const idCatgeorie
-            createGallery(galleryFilters);
-        } else {
-            createGallery(listGallery);
-        }
-        arrayFilters.forEach(btn => btn.classList.remove("selected"));
-        spanFilter.classList.add("selected");
-    });
-}
 
 //fonction pour créer la gallerie et pouvoir supprimer la gallerie du HTML
 const gallery = document.querySelector(".gallery");
@@ -89,7 +37,7 @@ const createGallery = (arrayGallery) => {
     //crée et renvoie une nouvelle chaîne de caractères en concaténant tous les éléments du tableau
 };
 
-// Fonction pour créer les catégories et rendre fonctionnels les filtres
+
 
 /*listCategories
     .map(
@@ -130,3 +78,5 @@ const createCategory = () => {
         })
     })
 }
+
+
