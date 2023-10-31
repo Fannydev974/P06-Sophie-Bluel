@@ -28,20 +28,24 @@ getWorks();
 const gallery = document.querySelector(".gallery");
 
 const createGallery = (arrayGallery) => {
-    gallery.innerHTML = arrayGallery
-        .map(
-            (img) => `
-    <figure>
-      <img src=${img.imageUrl} alt=${img.title}>
-      <figcaption>${img.title}</figcaption>
-    </figure>
-  `)
-        .join("");
-    //crée et renvoie une nouvelle chaîne de caractères en concaténant tous les éléments du tableau
+    for (project of arrayGallery) {//Project = mon image
+        const figure = document.createElement("figure");
+
+        const image = document.createElement("img");
+        image.setAttribute("src", project.imageUrl);
+        image.setAttribute("alt", project.title);
+
+        const figcaption = document.createElement("figcaption");
+        figcaption.innerText = project.title
+
+        figure.appendChild(image);
+        figure.appendChild(figcaption);
+        gallery.appendChild(figure);
+    }
 };
 
 // Fonction pour créer les catégories et rendre fonctionnels les filtres
-const createCategorys = () => {
+const createCategory = () => {
     const filter = document.querySelector(".btnFilter");
 
     // Création du bouton Tous
@@ -49,7 +53,7 @@ const createCategorys = () => {
     buttonAll.innerText = "Tous";
     buttonAll.classList.add("buttonName");
     //Modifier le nom de l'attribut //setAttribute fix la valeur de l'attribut "button" sur l'élément spécifié "buttonAll"
-    buttonAll.setAttribute("button", 0)
+    buttonAll.setAttribute("buttonSelected", 0)
     filter.appendChild(buttonAll);
 
     //création des autres boutons (objet,appartements,hôtels et restaurants)
@@ -59,62 +63,44 @@ const createCategorys = () => {
                 //console.log(category)
                 const buttonName = document.createElement("span");
                 buttonName.innerText = category.name;
-                buttonName.setAttribute("button", category.name)
+                buttonName.setAttribute("buttonSelected", category.name)//définir l'attribut
                 //Ajouter un attribut idCategorie comme ci-dessus
                 buttonName.classList.add("buttonName");
                 filter.appendChild(buttonName);
-                //console.log(buttonName)
+                //console.log(buttonName);
             }
 
         )
-}
 
 
-//Tableau arrayFilter
-const arrayFilters = document.querySelectorAll(".buttonName");
+    //Tableau arrayFilter
+    const arrayFilters = document.querySelectorAll(".buttonName");
 
 
-//spanFilter c'est le noeud qui contient tous mes boutons
-for (const spanFilter of arrayFilters) {
+    //spanFilter c'est le noeud qui contient tous mes boutons
+    for (const spanFilter of arrayFilters) {
 
-    spanFilter.addEventListener("click", (event) => {
-        //console.log(event.target) //Récupération de l'élèment html via event.target
-        const spanFilter = event.target
-        // const idCategorie = Récupérer idcategorie de l'event.target
-        const buttonSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur courante d'un attribut
-        console.log(buttonSelected)
-        //Ne plus utiliser i mais la const idCatgeorie
-        if (buttonSelected !== 0) {
-            galleryFilters = listGallery.filter(el => el.categoryId === buttonSelected); //Ne plus utiliser i mais la const idCatgeorie
-            createGallery(galleryFilters);
-        } else {
-            createGallery(listGallery);
-        }
-        arrayFilters.forEach(btn => btn.classList.remove("selected"));
-        spanFilter.classList.add("selected");
-    });
+        spanFilter.addEventListener("click", (event) => {
+            console.log(event.target); //Récupération de l'élèment html via event.target (buttonName selected)
+            const spanFilter = event.target;
+            // const idCategorie = Récupérer idcategorie de l'event.target
+            const buttonNameSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur de buttonSelected
+            //console.log(buttonSelected)
+            //Ne plus utiliser i mais la const idCatgeorie
+            if (buttonNameSelected !== 0) {// !== sinon la gallery du html revient
+                galleryFilters = listGallery.filter(el => el.categoryId === buttonNameSelected); //Ne plus utiliser i mais la const idCatgeorie
+                createGallery(galleryFilters);
+                //console.log(galleryFilters);
+            } else {
+                createGallery(listGallery);
+            }
+            arrayFilters.forEach(btn => btn.classList.remove("selected"));
+            spanFilter.classList.add("selected");
 
-}
+        });
 
-//Tous ce qui se passe dans la fonction dépend de arrayGallery
+    }
+    // changement de buttonSelected en buttonNameSelected ligne87 a 91
+    //Tous ce qui se passe dans la fonction dépend de arrayGallery
 
-// On donne les instructions au click sur un bouton filtre / /
-function buttonClicked(event) {
-    // On retire la sélection actuelle du bouton //
-    const buttonSelected = document.querySelector(".button--selected");
-    buttonSelected.classList.remove('button--selected');
-    // On sélectionne la nouvelle position du bouton qui a été clické //
-    const updateButtonSelected = event.target; // on séléctionne l'élément qui vient de recevoir le click//
-    updateButtonSelected.classList.add("button--selected");
-    // On réaffiche les projets qui correspondent à la catégorie du bouton filtre qui a été cliqué //
-    let worksFiltered = works.filter(function (work) { // On filtre les works en se demandant si le nom de la catégorie correspond //
-        //au nom du bouton qui a été cliqué //
-        if (event.target.innerText === "Tous") { // Dans le cas où on a cliqué sur tous on affiche alors tous les works //
-            return true; // Donc on intègre tous les works dans worksfiltered //
-        }
-        return work.category.name === event.target.innerText; // Dans le cas où on a cliqué sur un bouton catégorie, on affiche les works //
-        // dont la catégorie correspond au nom du bouton qui a été cliqué //
-    });
-    createProjectsCards(worksFiltered); // On appelle alors la fonction createprojectscards avec le paramètre worksfiltered //
-    // qui permet d'afficher les projets en fonction du filtre qui a été cliqué avec le paramètre worksFiltered //
 }
