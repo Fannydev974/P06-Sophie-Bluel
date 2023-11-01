@@ -17,11 +17,12 @@ const getWorks = async () => {
 
         createCategory();
         createGallery(listGallery);
+
     } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des travaux et des catégories :", error);
     }
-} //Ajout "try-catch"regroupe des instructions à exécuter et définit une réponse si une erreure lors de la récupération des travaux depuis l'API
-
+    //Ajout "try-catch"regroupe des instructions à exécuter et définit une réponse si une erreure lors de la récupération des travaux depuis l'API
+}
 getWorks();
 
 //fonction pour créer la gallerie et pouvoir supprimer la gallerie du HTML
@@ -52,7 +53,7 @@ const createCategory = () => {
     const buttonAll = document.createElement("span");
     buttonAll.innerText = "Tous";
     buttonAll.classList.add("buttonName");
-    //Modifier le nom de l'attribut //setAttribute fix la valeur de l'attribut "button" sur l'élément spécifié "buttonAll"
+    //setAttribute fix la valeur de l'attribut "button" sur l'élément spécifié "buttonAll"
     buttonAll.setAttribute("buttonSelected", 0)
     filter.appendChild(buttonAll);
 
@@ -64,6 +65,7 @@ const createCategory = () => {
                 const buttonName = document.createElement("span");
                 buttonName.innerText = category.name;
                 buttonName.setAttribute("buttonSelected", category.name)//définir l'attribut
+                //console.log(category.name);
                 //Ajouter un attribut idCategorie comme ci-dessus
                 buttonName.classList.add("buttonName");
                 filter.appendChild(buttonName);
@@ -77,18 +79,20 @@ const createCategory = () => {
     const arrayFilters = document.querySelectorAll(".buttonName");
 
 
-    //spanFilter c'est le noeud qui contient tous mes boutons
+    //spanFilter qui contient tous mes boutons
     for (const spanFilter of arrayFilters) {
 
         spanFilter.addEventListener("click", (event) => {
             console.log(event.target); //Récupération de l'élèment html via event.target (buttonName selected)
             const spanFilter = event.target;
+            //console.log(event.target);
+            //const categoryName = document.querySelector("#categoryName");//id categoryName 
             // const idCategorie = Récupérer idcategorie de l'event.target
-            const buttonNameSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur de buttonSelected
-            //console.log(buttonSelected)
+            const buttonSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur de buttonSelected
+            //console.log(buttonNameSelected);
             //Ne plus utiliser i mais la const idCatgeorie
-            if (buttonNameSelected !== 0) {// !== sinon la gallery du html revient
-                galleryFilters = listGallery.filter(el => el.categoryId === buttonNameSelected); //Ne plus utiliser i mais la const idCatgeorie
+            if (buttonSelected !== 0) {// !== sinon la gallery du html revient
+                galleryFilters = listGallery.filter(el => el.category.name === buttonSelected); //Ne plus utiliser i mais la const idCatgeorie
                 createGallery(galleryFilters);
                 //console.log(galleryFilters);
             } else {
@@ -97,10 +101,13 @@ const createCategory = () => {
             arrayFilters.forEach(btn => btn.classList.remove("selected"));
             spanFilter.classList.add("selected");
 
-        });
+            //Tous ce qui se passe dans la fonction dépend de arrayGallery
+            // Filtrer les données par catégorie
+            function galleryFilters(category) {
+                const galleryFilters = arrayGallery.filter(btn => btn.category.name === category);
+                renderData(galleryFilters);
+            }
+        })
 
     }
-    // changement de buttonSelected en buttonNameSelected ligne87 a 91
-    //Tous ce qui se passe dans la fonction dépend de arrayGallery
-
 }
