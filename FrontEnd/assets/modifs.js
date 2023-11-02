@@ -83,14 +83,12 @@ const createCategory = () => {
     for (const spanFilter of arrayFilters) {
 
         spanFilter.addEventListener("click", (event) => {
-            console.log(event.target); //Récupération de l'élèment html via event.target (buttonName selected)
+            console.log(event.target); //Récupération de l'élèment html via event.target (buttonName)
             const spanFilter = event.target;
-            //console.log(event.target);
-            //const categoryName = document.querySelector("#categoryName");//id categoryName 
+            console.log(event.target);
             // const idCategorie = Récupérer idcategorie de l'event.target
             const buttonSelected = spanFilter.getAttribute("buttonSelected")//getAttribut pour obtenir la valeur de buttonSelected
             //console.log(buttonNameSelected);
-            //Ne plus utiliser i mais la const idCatgeorie
             if (buttonSelected !== 0) {// !== sinon la gallery du html revient
                 galleryFilters = listGallery.filter(el => el.category.name === buttonSelected); //Ne plus utiliser i mais la const idCatgeorie
                 createGallery(galleryFilters);

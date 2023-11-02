@@ -79,24 +79,3 @@ const createCategory = () => {
     })
 }
 
-// // On donne les instructions au click sur un bouton filtre / /
-/*function buttonClicked(event) {
-    // On retire la sélection actuelle du bouton //
-    const buttonSelected = document.querySelector(".buttonSelected");
-    buttonSelected.classList.remove('buttonSelected');
-    // On sélectionne la nouvelle position du bouton qui a été clické //
-    const updateButtonSelected = event.target; // on séléctionne l'élément qui vient de recevoir le click//
-    updateButtonSelected.classList.add("buttonSelected");
-    // On réaffiche les projets qui correspondent à la catégorie du bouton filtre qui a été cliqué //
-    let worksFiltered = works.filter(function (work) {
-        // On filtre les works en se demandant si le nom de la catégorie correspond //
-        //au nom du bouton qui a été cliqué //
-        if (event.target.innerText === "Tous") { // Dans le cas où on a cliqué sur tous on affiche alors tous les works //
-            return true; // Donc on intègre tous les works dans worksfiltered //
-        }
-        return work.category.name === event.target.innerText; // Dans le cas où on a cliqué sur un bouton catégorie, on affiche les works //
-        // dont la catégorie correspond au nom du bouton qui a été cliqué //
-    });
-    createProjectsCards(worksFiltered); // On appelle alors la fonction createprojectscards avec le paramètre worksfiltered //
-    // qui permet d'afficher les projets en fonction du filtre qui a été cliqué avec le paramètre worksFiltered //
-}*/
