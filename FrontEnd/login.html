@@ -34,11 +34,14 @@
                 <label for="email">E-mail</label>
                 <input type="email" name="email" id="email">
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" autocomplete="off"
+                    required><!--pour éviter d'écrire une fonction pour les champs vides-->
+                <span id="Error"></span>
                 <input type="submit" class="submit" value="se connecter">
+
                 <a href="#" class="password_forgotten">Mot de passe oublié ?</a>
             </form>
-            <span id="Error"></span>
+
         </section>
     </main>
     <footer>

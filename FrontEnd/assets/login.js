@@ -1,74 +1,44 @@
-//Création de la fonction de connexion "identifiant d'envoi"
-async function sendId() {
-    const loginForm = document.querySelector(".login__form");
+// GESTION DU FORMULAIRE DE CONNEXION //
+
+const login = async () => {
     const myError = document.getElementById('Error');
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
 
-    //Vérification de la présence du formulaire
-    if (loginForm) {
-        //Lorsque l'utilisateur entre "mail et MDP" puis click sur "se connecter" un évenement "submit" est capturé par la fonction sendId// 
-        loginForm.addEventListener("submit", async function (event) {//submit car formulaire soumis au serveur//
-            event.preventDefault();//indique que si l'évènement n'est pas explicitement géré alors l'action par défaut ne devrait pas être exécutée comme elle l'est normalement//
+    //Construction de l'objet pour la requête API via une requête POST  //
+    const user = {
+        email: email,
+        password: password
+    };
 
+    fetch("http://localhost:5678/api/users/login", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(user)
+        //Récupération de la response JSON puis traitement de la response//
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            if (!result.token) { //traite le (result.token)
+                myError.textContent = "L'authentification a échouée, veuillez réessayer";
+                myError.style.color = "red"
+            }
+            else {
+                myError.textContent = "Authentification réussie";//Si ok, le resultat donne un ID et un token
+                myError.style.color = "green"
+                sessionStorage.setItem("token", result.token)//stocker le token dans le storage
+                window.location.href = "index.html"// Redirection vers page d'acceuil
+            }
+        })
 
-            //Récupération des valeurs du formulaire d'identification
-            const email = document.querySelector("#email").value;
-            const password = document.querySelector("#password").value;
-
-            const user = {
-                email: email,
-                password: password
-            };
-            try {
-                //valeur"mail et MDP" récupéré et sont envoyés en tant qu'objet JSON à l'API via une requête POST 
-                const response = await fetch("http://localhost:5678/api/users/login", {
-                    method: "POST",
-                    headers: { "Content-type": "application/json" },
-                    body: JSON.stringify(user)
-                });
-                //Vérification de la réponse par l'API Si réponse ok un token d'authentification est généré et renvoyé dans la réponse sinon un message d'erreur est affiché suivant le staut de la réponse
-                if (response.status === 401) {
-                    myError.textContent = "Erreur, mot de passe incorrect.";
-                } else if (response.status === 404) {
-                    myError.textContent = "Erreur, utilisateur inconnu.";
-                } else if (response.ok) {
-                    //Si la réponse est ok extraction des données JSON
-                    const result = await response.json();
-
-                    //Vérification du token && si c'est vrai
-                    if (result && result.token) {
-                        //Ce token est stocké localement dans le navigateur de l'utilisateur a l'aide de localStorage
-                        localStorage.setItem("token", result.token);//setItem ajoute les clé-valeurs a l'emplacement storage/sinon mets a jours la valeur si la clé existe déja
-                        //Redirection vers la page d'accueil ( la fonction vérifie si le token est bien stocké dans le localStorage, si oui, l'utilisateur est redirigé vers la page d'acceuil)
-                        document.location.href = "index.html";
-                        //Changement du texte du lien une fois connecté
-                        deconnect();
-                    }
-                }
-            } catch (error) {
-                //Message en cas d'erreur de requête où de connexion
-                console.error("erreur lors de la requête d'authentification:", error);
-            };
-        });
-    }
 }
+//appelle fonction "sendId/identifiant d'envoi" dans addEventListener pour aller récupérer mes champs et faire ma requête. 
+document.querySelector(".login__form").addEventListener('submit', (sendId) => {
+    sendId.preventDefault();
+    login();
+})
+// Récupérer des données depuis sessionStorage var data = sessionStorage.getItem("clé");
+// Supprimer des données de sessionStorage sessionStorage.removeItem("clé");
 
-//Création de la fonction de déconnexion "deconnect" qui gère la déconnection de l'utilisateur
-function deconnect() {//loginLink "lien de connexion"
-    const loginLink = document.querySelector(".login-logout");
 
-    if (loginLink) {
-        //Si le token est présent dans le localStorage elle modifie le texte du lien en "logout" et ajoute un gestionnaire de click pour le déconnexion//
-        if (localStorage.getItem("token")) {//getItem renvoi la valeur associée a la clé"token"passé en paramètre//
-            //Changement du texte du lien "login" en "logout"
-            loginLink.addEventListener("click", function (event) {
-                event.preventDefault();
-                //Lorsque l'utilisateur clic sur "logout" elle supprime le token du localStorage, déconnectant ainsi l'utilisateur et le redirige vers la page de connexion// 
-                localStorage.removeItem("token");
 
-                //Redirection vers la page d'identification
-                document.location.href = "login.html";
-            });
-
-        }
-    }
-}

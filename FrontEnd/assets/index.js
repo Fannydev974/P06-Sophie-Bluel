@@ -26,9 +26,10 @@ getWorks();
 
 //fonction pour créer la gallerie et pouvoir supprimer la gallerie du HTML
 const createGallery = (arrayGallery) => {
-
     const gallery = document.querySelector(".gallery");
-    while (gallery.firstChild) {//efface la galerie pour afficher celle qui sera filtré
+
+    //Fonction d'éffacement de la gallerie et affichage de celle qui sera filtré
+    while (gallery.firstChild) {
         gallery.removeChild(gallery.firstChild);
     }
 
@@ -52,12 +53,12 @@ const createGallery = (arrayGallery) => {
 const createCategory = () => {
     const filter = document.querySelector(".btnFilter");
 
-    // Création du bouton Tous
+    // Création du bouton Tous avec l'ID "0" pour permettre le filtrage des projets 
     const buttonAll = document.createElement("span");
     buttonAll.innerText = "Tous";
     buttonAll.classList.add("buttonName");
     buttonAll.classList.add("selected");
-    buttonAll.setAttribute("id", 0) // On donne l'ID "0" à notre bouton pour permettre le filtrage via l'ID //
+    buttonAll.setAttribute("id", 0)
     //setAttribute fix la valeur de l'attribut "button" sur l'élément spécifié "buttonAll"
     buttonAll.setAttribute("buttonSelected", 0)
     filter.appendChild(buttonAll);
@@ -74,8 +75,8 @@ const createCategory = () => {
             }
 
         )
-
-    let active = document.querySelector(".selected");// pseudo-classe :active permet de cibler un élément lorsque celui-ci est activé par l'utilisateur
+    // Rajout de la class active au bouton cliqué
+    let active = document.querySelector(".selected");
     document.querySelectorAll(".buttonName")
         .forEach((spanButton) => {
             spanButton.addEventListener('click', () => {
@@ -83,6 +84,7 @@ const createCategory = () => {
                 spanButton.classList.add("selected");
                 active = spanButton;
 
+                // Filtrage de ma galerie au clic sur le bouton
                 if (spanButton.id == 0) {
                     createGallery(listGallery);
                 }
@@ -95,3 +97,40 @@ const createCategory = () => {
         }
         )
 }
+
+//******************** GESTION DECONNECT********************//
+const token = sessionStorage.getItem("token")//getItem renvoi la valeur associée a la clé"token"passé en paramètre//
+console.log(token)
+
+// Fonction de déconnexion et suppresion du Token 
+const deconnect = () => {
+    const loginLink = document.getElementById("loginLink");
+
+    // Gestion du lien login dans le header 
+    if (token) {
+        loginLink.textContent = "logOut"//textContent obtient le contenu de tous les éléments + retourne chaque élément dans le noeud(dom)
+        loginLink.addEventListener("click", () => {
+            loginLink.textContent = "login"
+
+            // Suppresion de token & Redirection
+            sessionStorage.removeItem("token");
+            window.location.href = "index.html";
+        });
+
+    }
+}
+deconnect()
+
+/**********************************Page Modifier ******************************************/
+function createGallery = (arrayGallery)
+
+
+
+
+
+
+
+/********************* Apparition de la modal sur le lien modifier ************************/
+const modalContainer = document.querySelector(".modal-container");
+const modalTriggers = document.querySelectorAll(".modal-trigger");//triggers déclencheurs
+
