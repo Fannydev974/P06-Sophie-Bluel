@@ -1,19 +1,12 @@
-
-// a faire : vérifier les champs vides
-//Revoir envoi Api surement une erreure du formulaire et des infos*/
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-
-
 //Création de la fonction de connexion "identifiant d'envoi"
-
 async function sendId() {
-    const formId = document.querySelector(".login__form");
-    const errorMessage = document.querySelector(".error-message");
+    const loginForm = document.querySelector(".login__form");
+    const myError = document.getElementById('Error');
 
     //Vérification de la présence du formulaire
-    if (formId) {
+    if (loginForm) {
         //Lorsque l'utilisateur entre "mail et MDP" puis click sur "se connecter" un évenement "submit" est capturé par la fonction sendId// 
-        formId.addEventListener("submit", async function (event) {//submit car formulaire soumis au serveur//
+        loginForm.addEventListener("submit", async function (event) {//submit car formulaire soumis au serveur//
             event.preventDefault();//indique que si l'évènement n'est pas explicitement géré alors l'action par défaut ne devrait pas être exécutée comme elle l'est normalement//
 
 
@@ -34,9 +27,9 @@ async function sendId() {
                 });
                 //Vérification de la réponse par l'API Si réponse ok un token d'authentification est généré et renvoyé dans la réponse sinon un message d'erreur est affiché suivant le staut de la réponse
                 if (response.status === 401) {
-                    errorMessage.textContent = "Erreur, mot de passe incorrect.";
+                    myError.textContent = "Erreur, mot de passe incorrect.";
                 } else if (response.status === 404) {
-                    errorMessage.textContent = "Erreur, utilisateur inconnu.";
+                    myError.textContent = "Erreur, utilisateur inconnu.";
                 } else if (response.ok) {
                     //Si la réponse est ok extraction des données JSON
                     const result = await response.json();
@@ -44,7 +37,7 @@ async function sendId() {
                     //Vérification du token && si c'est vrai
                     if (result && result.token) {
                         //Ce token est stocké localement dans le navigateur de l'utilisateur a l'aide de localStorage
-                        localStorage.setItem("token", result.token);//setItem ajoute les clé-valeurs a l'emplacement storage/sinon les mets a jours la valeur si la clé existe déja
+                        localStorage.setItem("token", result.token);//setItem ajoute les clé-valeurs a l'emplacement storage/sinon mets a jours la valeur si la clé existe déja
                         //Redirection vers la page d'accueil ( la fonction vérifie si le token est bien stocké dans le localStorage, si oui, l'utilisateur est redirigé vers la page d'acceuil)
                         document.location.href = "index.html";
                         //Changement du texte du lien une fois connecté
