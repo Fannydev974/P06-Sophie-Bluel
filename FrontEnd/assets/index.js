@@ -13,9 +13,11 @@ const getWorks = async () => {
 
         listGallery = await responseWorks.json();
         listCategories = await responseCategories.json();
+        console.log(listGallery)
 
         createCategory();
         createGallery(listGallery);
+        createGalleryModal(listGallery);
 
     } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des travaux et des catégories :", error);
@@ -29,8 +31,8 @@ const createGallery = (arrayGallery) => {
     const gallery = document.querySelector(".gallery");
 
     //Fonction d'éffacement de la gallerie et affichage de celle qui sera filtré
-    while (gallery.firstChild) {
-        gallery.removeChild(gallery.firstChild);
+    while (gallery.firstChild) {//condition
+        gallery.removeChild(gallery.firstChild);//instruction
     }
 
     for (project of arrayGallery) {//Project = mon image
@@ -58,7 +60,7 @@ const createCategory = () => {
     buttonAll.innerText = "Tous";
     buttonAll.classList.add("buttonName");
     buttonAll.classList.add("selected");
-    buttonAll.setAttribute("id", 0)
+    buttonAll.setAttribute("data-idCategory", 0)
     //setAttribute fix la valeur de l'attribut "button" sur l'élément spécifié "buttonAll"
     buttonAll.setAttribute("buttonSelected", 0)
     filter.appendChild(buttonAll);
@@ -69,27 +71,33 @@ const createCategory = () => {
             (category) => {
                 const buttonName = document.createElement("span");
                 buttonName.innerText = category.name;
-                buttonName.setAttribute("id", category.name)//définir l'attribut
+                buttonName.setAttribute("data-idCategory", category.id)//définir l'attribut
                 buttonName.classList.add("buttonName");
                 filter.appendChild(buttonName);
             }
 
         )
     // Rajout de la class active au bouton cliqué
-    let active = document.querySelector(".selected");
+
     document.querySelectorAll(".buttonName")
         .forEach((spanButton) => {
-            spanButton.addEventListener('click', () => {
+            spanButton.addEventListener('click', (event) => {
+
+                const active = document.querySelector(".selected");
+                const spanButton = event.target
+                const spanButtonId = parseInt(spanButton.getAttribute("data-idCategory"))//reconvertir en chiffre
+                console.log(spanButtonId)
+
                 active.classList.remove("selected");
                 spanButton.classList.add("selected");
-                active = spanButton;
+
 
                 // Filtrage de ma galerie au clic sur le bouton
-                if (spanButton.id == 0) {
+                if (spanButtonId == 0) {
                     createGallery(listGallery);
                 }
                 else {
-                    const filteredImages = listGallery.filter((image) => image.category.name === spanButton.id);
+                    const filteredImages = listGallery.filter((image) => image.categoryId === spanButtonId);
                     createGallery(filteredImages);
                 }
             }
@@ -98,39 +106,26 @@ const createCategory = () => {
         )
 }
 
-//******************** GESTION DECONNECT********************//
+//******************** GESTION DECONNECT LOGIN/ LOGOUT********************//
 const token = sessionStorage.getItem("token")//getItem renvoi la valeur associée a la clé"token"passé en paramètre//
 console.log(token)
 
 // Fonction de déconnexion et suppresion du Token 
-const deconnect = () => {
-    const loginLink = document.getElementById("loginLink");
 
-    // Gestion du lien login dans le header 
-    if (token) {
-        loginLink.textContent = "logOut"//textContent obtient le contenu de tous les éléments + retourne chaque élément dans le noeud(dom)
-        loginLink.addEventListener("click", () => {
-            loginLink.textContent = "login"
+const loginLink = document.getElementById("loginLink");
 
-            // Suppresion de token & Redirection
-            sessionStorage.removeItem("token");
-            window.location.href = "index.html";
-        });
+// Gestion du lien login dans le header 
+if (token) {
+    loginLink.textContent = "logOut"//textContent obtient le contenu de tous les éléments + retourne chaque élément dans le noeud(dom)
+    loginLink.addEventListener("click", () => {
+        loginLink.textContent = "login"
 
-    }
+        // Suppresion de token & Redirection
+        sessionStorage.removeItem("token");
+        window.location.href = "index.html";
+    });
+
 }
-deconnect()
-
-/**********************************Page Modifier ******************************************/
-function createGallery = (arrayGallery)
 
 
-
-
-
-
-
-/********************* Apparition de la modal sur le lien modifier ************************/
-const modalContainer = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");//triggers déclencheurs
 

@@ -2,7 +2,7 @@
 
 const login = async () => {
     const myError = document.getElementById('Error');
-    const email = document.querySelector("#email").value;
+    const email = document.querySelector("#email").value;//getElementById ne fonctionne pas
     const password = document.querySelector("#password").value;
 
     //Construction de l'objet pour la requête API via une requête POST  //

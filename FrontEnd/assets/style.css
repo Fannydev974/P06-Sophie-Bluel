@@ -158,7 +158,8 @@ h1 {
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: #B1663C;
+	margin-top: 3%;
 }
 
 h1>span {
@@ -367,22 +368,56 @@ a {
 }
 
 /***********page modifier***********/
-.modal-container {}
-
-.modify {
-	display: flex;
-	justify-content: center;
-	align-items: baseline;
-	gap: 5%;
+* {
+	box-sizing: border-box;
 }
 
-.modify_project {
+.edition {
+	background-color: #000;
+	height: 50px;
 	display: flex;
 	align-items: center;
-	gap: 10%;
+	justify-content: center;
+	gap: 20px;
 }
 
-.modalLink {
+.edition p {
+	color: white;
+}
+
+nav {
 	display: flex;
-	margin-top: 5%;
+	justify-content: end;
+	margin-top: -3%;
+}
+
+.modify {
+
+	color: red;
+}
+
+#modal a {
+	display: flex;
+	color: yellow;
+}
+
+
+.modal {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba (0, 0, 0, 0.8);
+}
+
+.modal-wrapper {
+	width: 500px;
+	padding: 20px;
+	background-color: white;
+	max-width: calc (100vw - 20px);
+	max-height: calc (100vh - 20px);
 }
