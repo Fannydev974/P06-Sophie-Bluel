@@ -1,6 +1,5 @@
 let modal = null
 
-
 const openModal = function (e) {
     e.preventDefault()
     const target = document.querySelector(e.target.getAttribute('href'))
