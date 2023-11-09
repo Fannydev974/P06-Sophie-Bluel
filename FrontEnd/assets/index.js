@@ -17,7 +17,7 @@ const getWorks = async () => {
 
         createCategory();
         createGallery(listGallery);
-        createGalleryModal(listGallery);
+        //createGalleryModal(listGallery);
 
     } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des travaux et des catégories :", error);
