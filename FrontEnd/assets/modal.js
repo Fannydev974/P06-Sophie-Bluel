@@ -1,6 +1,7 @@
 let listGalleryModal = [];
 
 let modal = null
+let modal2 = null;
 
 const openModal = function (e) {
     e.preventDefault()
@@ -23,6 +24,38 @@ const closeModal = function (e) {
     modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
     modal = null
 }
+
+const openModal2 = async function (event) {
+    event.preventDefault();
+    const target2 = event.target.getAttribute("formaction");
+    if (target2.startsWith("#")) {
+        modal2 = document.querySelector(target2)
+    } else {
+        modal2 = await loadModal(target2)
+    }
+    modal2.style.display = null;
+    modal2.removeAttribute("aria-hidden");
+    modal2.setAttribute("aria-modal", "true");
+    modal2.addEventListener("click", modalClose2);
+    modal2.querySelector(".js-modal-close-2").addEventListener("click", modalClose2);
+    modal2.querySelector(".btn-return-arrow").addEventListener("click", modalClose2);
+    modal2.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
+};
+
+const modalClose2 = function () {
+    if (modal2 === null) return;
+    modal2.style.display = "none";
+    modal2.setAttribute("aria-hidden", "true");
+    modal2.removeAttribute("aria-modal");
+    modal2.removeEventListener("click", modalClose2);
+    modal2.querySelector(".js-modal-close-2").removeEventListener("click", modalClose2);
+    modal2.querySelector(".btn-return-arrow").removeEventListener("click", modalClose2);
+    modal2.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
+    modal2 = null;
+};
+
+
+
 
 //Evite que le code se duplique à chaque clic
 const stopPropagation = function (e) {

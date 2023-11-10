@@ -14,17 +14,68 @@
 </head>
 
 <body>
+    <aside id="modal2" class="modal2" aria-hidden="true" aria-labelledby="titlemodal2" style="display: none;">
+        <div class="container-wrapper2 js-modal-stop" id="container-modal2">
+            <div class="modal-close">
+                <button type="submit" class="btn-return-arrow" id="return-modal2">
+                    <img src="assets/icons/arrow-left.png" alt=""></button>
 
-    <aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="titlemodal" style="display: none;">
+                <button type="submit" class="js-modal-close-2" id="close-modal2">
+                    <img src="assets/icons/trash-can-solid.png" alt="">
+                </button>
+            </div>
+            <h3 id="titlemodal2">Ajout photo</h3>
+            <form id="add-form">
+
+                <div id="add-picture"></div>
+                <!--Rajouter image-->
+                <img src="assets/icons/picture-svgrepo-com 1.png" alt="">
+                <label for="image" id="btn-add-picture">+ Ajouter photo</label>
+                <input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>
+                <p id="size-max-picture">jpg, png : 4mo max</p>
+        </div>
+
+        <div class="title-picture">
+            <label for="title" class="label-form">Titre</label>
+            <input id="title" name="title" class="fields-form" required><br>
+        </div>
+        <div class="categories-picture">
+            <label for="list-category" id="choose-category" class="label-form">Catégories</label>
+            <select name="category" id="list-category" class="form-category" required>
+                <option value="">Veuillez sélectionner la catégorie</option>
+                <!-- Affichage des catégories via l'API -->
+            </select>
+        </div>
+        <div class="btn-validate2">
+            <button type="submit" formaction="index.html#modal1" id="validate-modal2">Valider</button>
+        </div>
+
+        </form>
+        </div>
+    </aside>
+
+
+
+
+
+
+
+    <!--<aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="titlemodal" style="display: none;">
         <div class="modal-wrapper js-modal-stop">
             <button class="js-modal-close"><img src="assets/icons/xmark.png" alt=""></button>
             <h3 id="titlemodal">Galerie Photo</h3>
             <div class="modal_gallery">
-                <div class="delete-picture">
-                    <button class="btnDelete">Ajouter une photo</button>
-                    <a id="delete-picture">Supprimer la galerie</a>
-                </div>
+
             </div>
+            <div class="delete-picture">
+                <button type="submit" class="btnDelete" formaction="modal.html#modal2" id="validate-Modal">Ajouter une
+                    photo</button>
+                <a id="delete-picture" style="display: none;">Supprimer la galerie</a>
+            </div>
+        </div>
+
+
+        </div>
         </div>
 
     </aside>
@@ -35,7 +86,7 @@
             <p>Mode édition</p>
         </div>
 
-    </div>
+    </div>-->
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
         <nav>
@@ -69,11 +120,11 @@
             <h2>Mes Projets</h2>
             <div class="modify"></div>
             <img src="./assets/icons/Group (2).png" alt="">
-            <a href="#modal1" class="js-modal">Modifier</a>
+            <a href="#modal2" class="js-modal">Modifier</a>
             </div>
 
         </section>
-        <div class="modal_gallery"></div>
+        <!--<div class="modal_gallery"></div>-->
 
         <section id="contact">
             <h2>Contact</h2>

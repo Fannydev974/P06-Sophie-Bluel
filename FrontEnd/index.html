@@ -15,7 +15,34 @@
 </head>
 
 <body>
+	<aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="titlemodal" style="display: none;">
+		<div class="modal-wrapper js-modal-stop">
+			<button class="js-modal-close"><img src="assets/icons/xmark.png" alt=""></button>
+			<h3 id="titlemodal">Galerie Photo</h3>
+			<div class="modal_gallery">
 
+			</div>
+			<div class="delete-picture">
+				<button type="submit" class="btnDelete" formaction="modal.html#modal2" id="validate-Modal">Ajouter une
+					photo><img src="assets/icons/trash-can-solid.png" alt="">
+				</button>
+				<a id="delete-picture" style="display: none;">Supprimer la galerie</a>
+			</div>
+		</div>
+
+
+		</div>
+		</div>
+
+	</aside>
+
+	<div class="header_edition">
+		<div class="edition">
+			<img src="./assets/icons/Vector.png" alt="">
+			<p>Mode édition</p>
+		</div>
+
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -44,15 +71,18 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<div class="container-modifier-projets">
-				<h2>Mes Projets</h2>
+			<h2>Mes Projets</h2>
+			<!--Ouverture de la première modal-->
+			<div class="modify"></div>
+			<img src="./assets/icons/Group (2).png" alt="" style="display: none;">
+			<a id="modifier-projets" class="modif-btn" href="#modal1" style="display: none;">Modifier</a>
 			</div>
 
 			<div class="btnFilter"></div>
 
 			<div class="gallery"></div>
 		</section>
-
+		<div class="modal_gallery"></div>
 		<section id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
