@@ -39,6 +39,6 @@ document.querySelector(".login__form").addEventListener('submit', (sendId) => {
 })
 // Récupérer des données depuis sessionStorage var data = sessionStorage.getItem("clé");
 // Supprimer des données de sessionStorage sessionStorage.removeItem("clé");
-
+//submit pour envoyer des données
 
 

@@ -14,31 +14,55 @@
 
 </head>
 
-<body>
-	<aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="titlemodal" style="display: none;">
-		<div class="modal-wrapper js-modal-stop">
-			<button class="js-modal-close"><img src="assets/icons/xmark.png" alt=""></button>
+<body> <!--Modal 1-->
+	<div class="modal-container">
+
+		<div class="overlay modal-trigger"></div>
+
+		<div class="modal">
+			<button class="close-modal modal-trigger"><img src="assets/icons/xmark.png"></button>
 			<h3 id="titlemodal">Galerie Photo</h3>
-			<div class="modal_gallery">
+			<div class="modal_gallery"></div>
+			<div class="delete-picture"><img src="assets/icons/trash-can-solid.png"></div>
+			<button class="btn-modal1">Ajouter une photo</button>
+			<a id="delete-picture" style="display: none;">Supprimer la galerie</a>
+		</div>
+	</div>
 
-			</div>
-			<div class="delete-picture">
-				<button type="submit" class="btnCloseModal" formaction="modal.html#modal2" id="validate-Modal">Ajouter
-					une
-					photo><img src="assets/icons/trash-can-solid.png" alt="">
-				</button>
-				<a id="delete-picture" style="display: none;">Supprimer la galerie</a>
-			</div>
+
+	<!--Modal 2-->
+	<!--<div class="modal-container2">
+
+		<div class="overlay modal-trigger"></div>
+
+		<div class="modal2">
+			<button class="close-modal modal-trigger"><img src="assets/icons/xmark.png"></button>
+			<button class="return-left"><img src="assets/icons/arrow-left.png"></button>
+			<h3 id="titlemodal2">Ajout Photo</h3>
+
+			<form id="add-form">
+				<div id="add-picture"></div>
+				<!--Rajouter image-->
+	<!--<img src="assets/icons/picture-svgrepo-com 1.png" alt="">
+				<label for="image" id="btn-add-picture">+ Ajouter photo</label>
+				<input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>
+				<p id="size-max-picture">jpg, png : 4mo max</p>
 		</div>
 
 
-		</div>
-		</div>
+	</div>
+	</div>-->
 
-	</aside>
 
 
 	<header>
+		<div class="header_edition" style="display: none;">
+			<div class="edition">
+				<img src="./assets/icons/Vector.png" alt="">
+				<p>Mode édition</p>
+			</div>
+
+		</div>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
@@ -69,18 +93,25 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<!--Ouverture de la première modal-->
-			<div class="modify"></div>
-			<img src="./assets/icons/Group (2).png" alt="" style="display: none;">
-			<a id="modifier-projets" class="modif-btn" href="#modal1" style="display: none;">Modifier</a>
+			<div class="modify">
+				<h2>Mes Projets</h2>
+				<!--Ouverture de la première modal-->
+
+				<img src="./assets/icons/Group (2).png" alt="" style="display: none;">
+				<button class="modal-btn modal-trigger" style="display: none;">Modifier</button>
+				<a id="modifier-projets" class="modal-btn-modif" href="#modal1" style="display: none;">Modifier</a>
+			</div>
+			</div>
+
 			</div>
 
 			<div class="btnFilter"></div>
 
 			<div class="gallery"></div>
 		</section>
+
 		<div class="modal_gallery"></div>
+
 		<section id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
