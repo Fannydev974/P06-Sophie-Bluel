@@ -363,7 +363,7 @@ label {
 a {
 	text-align: center;
 	color: #3D3D3D;
-	padding-left: 30%;
+
 }
 
 /***********page modifier***********/
@@ -397,16 +397,6 @@ nav {
 	gap: 1%;
 }
 
-.js-modal {
-
-	margin: 0;
-	padding: 0;
-}
-
-.modify {
-	background-color: red;
-
-}
 
 #modal a {
 	display: flex;

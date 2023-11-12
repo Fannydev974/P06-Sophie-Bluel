@@ -3,12 +3,18 @@ let listGalleryModal = [];
 let modal = null
 let modal2 = null;
 
-const openModal = function (e) {
-    e.preventDefault()
-    const target = document.querySelector(e.target.getAttribute('href'))
-    target.style.display = null //Retirer le display:none du html
-    target.removeAttribute('aria-hidden')
-    target.setAttribute('aria-modal', true)
+const openModal = async function (e) {
+    e.preventDefault();
+
+    const target = e.target.getAttribute("href");
+    if (target.startsWith("#")) {
+        modal = document.querySelector(target)
+    } else {
+        modal = await loadModal(target)
+    }
+    modal.style.display = null //Retirer le display:none du html
+    modal.removeAttribute('aria-hidden')
+    modal.setAttribute('aria-modal', true)
     modal = target
     modal.addEventListener('click', closeModal)
     modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
@@ -54,9 +60,6 @@ const modalClose2 = function () {
     modal2 = null;
 };
 
-
-
-
 //Evite que le code se duplique à chaque clic
 const stopPropagation = function (e) {
     e.stopPropagation()
@@ -66,6 +69,29 @@ const stopPropagation = function (e) {
 document.querySelectorAll('.js-modal').forEach(a => {
     a.addEventListener('click', openModal)
 })
+// Fermeture Modale 1
+function btnCloseModal() {
+    const btnCloseModal = document.querySelector(".js-modal-close");
+    btnCloseModal.addEventListener('click', () => {
+        btnCloseModal();
+    });
+}
+
+// Fermeture Modale 2
+function btnCloseModal2() {
+    const btnCloseModal2 = document.querySelector("btnCloseModal2");
+    btnCloseModal2.addEventListener('click', () => {
+        btnCloseModal2();
+    });
+}
+// Retour Modale 2 à Modale 1
+function returnArrowModal() {
+    const returnArrow = document.getElementById("return-modal2");
+    returnArrow.addEventListener('click', (event) => {
+        event.preventDefault();
+        btnCloseModal2();
+    })
+}
 
 //Fonction getWorksModal pour récuperer les travaux
 
