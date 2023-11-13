@@ -221,10 +221,31 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 
+link {
+	display: none;
+}
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 
+}
+
+#modify {
+	display: none;
+}
+
+#modifier-introduction {
+	display: none;
+}
+
+
+.modal-btn {
+	display: none;
+}
+
+#modifier-projets {
+	display: none;
 }
 
 .filter {
@@ -371,7 +392,7 @@ a {
 	box-sizing: border-box;
 }
 
-.edition {
+.header_edition {
 	background-color: #000;
 	height: 50px;
 	display: flex;
@@ -428,7 +449,7 @@ nav {
 
 }
 
-.modify {
+#modify {
 	background-color: #fff;
 	display: flex;
 	justify-content: center;

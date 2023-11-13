@@ -1,3 +1,6 @@
+const token = sessionStorage.getItem("token")//getItem renvoi la valeur associée a la clé"token"passé en paramètre//
+console.log(token)
+
 //----Récupérer la gallerie et les catégories depuis l'api
 
 let listGallery = [];
@@ -14,9 +17,13 @@ const getWorks = async () => {
         listGallery = await responseWorks.json();
         listCategories = await responseCategories.json();
         console.log(listGallery)
-
-        createCategory();
+        console.log(token)
+        //Enlèvement des btn filtre sur la page "modifier"
+        if (!token) {// '!'inversion du résultat de la condition (false true)
+            createCategory();
+        }
         createGallery(listGallery);
+        modifyProjets();
         //createGalleryModal(listGallery);
 
     } catch (error) {
@@ -107,24 +114,21 @@ const createCategory = () => {
 }
 
 //******************** GESTION DECONNECT LOGIN/ LOGOUT********************//
-const token = sessionStorage.getItem("token")//getItem renvoi la valeur associée a la clé"token"passé en paramètre//
-console.log(token)
-
-// Fonction de déconnexion et suppresion du Token 
-
-const loginLink = document.getElementById("loginLink");
 
 // Gestion du lien login dans le header 
 if (token) {
-    loginLink.textContent = "logOut"//textContent obtient le contenu de tous les éléments + retourne chaque élément dans le noeud(dom)
+    const loginLink = document.getElementById("login");
+    loginLink.textContent = "logout"//textContent obtient le contenu de tous les éléments + retourne chaque élément dans le noeud(dom)
     loginLink.addEventListener("click", () => {
-        loginLink.textContent = "login"
 
         // Suppresion de token & Redirection
         sessionStorage.removeItem("token");
-        window.location.href = "index.html";
     });
-
+    //Page modifier 
+    if (token) {
+        modifyProjets();
+    }
+    //modal.style.display = null //Retirer le display:none du html
 }
 
 
