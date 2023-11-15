@@ -23,8 +23,7 @@ const getWorks = async () => {
             createCategory();
         }
         createGallery(listGallery);
-        modifyProjets();
-        //createGalleryModal(listGallery);
+        createGalleryModal(listGalleryModal);
 
     } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des travaux et des catégories :", error);
@@ -124,12 +123,40 @@ if (token) {
         // Suppresion de token & Redirection
         sessionStorage.removeItem("token");
     });
-    //Page modifier 
-    if (token) {
-        modifyProjets();
-    }
-    //modal.style.display = null //Retirer le display:none du html
+
+
+    //--------------Page Modifier-------------------------------//
+
+    // Emplacement de la barre de modification
+    const modifyModeEdition = document.querySelector(".header-container");
+
+    // Barre de modification en haut du site
+    const modifyEdition = document.createElement("div");
+    modifyEdition.classList.add("modifyEdition");
+
+    // Création de l'icône modifier dans la barre de modification
+    const modifyIcone = document.createElement("i");
+    modifyIcone.classList = "fa-solid fa-pen-to-square";
+    modifyIcone.setAttribute("id", "modify__icone");
+
+    // Création du label modifier dans la barre de modification
+    const modifyLabel = document.createElement("p");
+    modifyLabel.classList.add("modify__label");
+    modifyLabel.textContent = "Mode édition";
+
+    // Création du bouton dans la barre de modification
+    const buttonPublication = document.createElement("button");
+    buttonPublication.classList.add("btn_publication");
+    buttonPublication.textContent = "publier les changements";
+    buttonPublication.type = "submit";
+
+    // Apparition du bouton modifier quand connecté
+    const modifyProject = document.getElementById("modify__projets");
+    modifyProject.style.display = "block";
+    // Rattachement des balises parents/enfants
+    modifyModeEdition.appendChild(modifyEdition);
+    modifyEdition.appendChild(modifyIcone);
+    modifyEdition.appendChild(modifyLabel);
+
 }
-
-
 

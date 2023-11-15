@@ -11,59 +11,13 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-
+	<script src="https://kit.fontawesome.com/0f346c29f5.js"></script>
 </head>
 
-<body> <!--Modal 1-->
-	<div class="modal-container">
-
-		<div class="overlay modal-trigger"></div>
-
-		<div class="modal">
-			<button class="close-modal modal-trigger"><img src="assets/icons/xmark.png"></button>
-			<h3 id="titlemodal">Galerie Photo</h3>
-			<div class="modal_gallery"></div>
-			<div class="delete-picture"><img src="assets/icons/trash-can-solid.png"></div>
-			<button class="btn-modal1">Ajouter une photo</button>
-			<a id="delete-picture" style="display: none;">Supprimer la galerie</a>
-		</div>
-	</div>
-
-
-	<!--Modal 2-->
-	<!--<div class="modal-container2">
-
-		<div class="overlay modal-trigger"></div>
-
-		<div class="modal2">
-			<button class="close-modal modal-trigger"><img src="assets/icons/xmark.png"></button>
-			<button class="return-left"><img src="assets/icons/arrow-left.png"></button>
-			<h3 id="titlemodal2">Ajout Photo</h3>
-
-			<form id="add-form">
-				<div id="add-picture"></div>
-				<!--Rajouter image-->
-	<!--<img src="assets/icons/picture-svgrepo-com 1.png" alt="">
-				<label for="image" id="btn-add-picture">+ Ajouter photo</label>
-				<input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>
-				<p id="size-max-picture">jpg, png : 4mo max</p>
-		</div>
-
-
-	</div>
-	</div>-->
-
-
+<body>
 
 	<header>
-		<div class="header_edition" style="display: none;">
-			<div class="edition">
-				<link id="./assets/icons/Vector.png">
-				</link>
-				<p>Mode édition</p>
-			</div>
-
-		</div>
+		<div class="header-container"></div>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
@@ -73,14 +27,13 @@
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
+
 	</header>
 	<main>
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<link id="modifier-introduction" class="modif-btn">
-				<link id="./assets/icons/Group (2).png" class="Modifier">
-				</link>
+				<a id="intro__modify" class="redone__btn"><i class="fa-regular fa-pen-to-square"></i>Modifier</a>
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -95,26 +48,20 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<div id="modify">
+			<div class="modify">
 				<h2>Mes Projets</h2>
 				<!--Ouverture de la première modal-->
-
-				<link id="./assets/icons/Group (2).png" class="Modifier">
-				<link>
-				<button class="modal-btn modal-trigger">Modifier</button>
-				<a id="modifier-projets" class="modal-btn-modif" href="#modal1">Modifier</a>
-			</div>
-			</div>
+				<a id="modify__projets" class="openModal1" href="#modal1"><i
+						class="fa-regular fa-pen-to-square"></i>Modifier</a>
 			</div>
 
-			</div>
 
 			<div class="btnFilter"></div>
 
 			<div class="gallery"></div>
 		</section>
 
-		<div class="modal_gallery"></div>
+		<!--<div class="modal_gallery"></div>-->
 
 		<section id="contact">
 			<h2>Contact</h2>
@@ -131,6 +78,67 @@
 		</section>
 
 		<!--modal-->
+		<aside id="modal1" class="modal1" aria-hidden="true" aria-labelledby="title__modal1">
+			<div class="modal__container js__modal__stop" id="modal__container1">
+				<div class="close__modal">
+					<button type="submit" class="js__close__modal" id="close__modal1">
+						<i class="fa-solid fa-xmark"></i>
+					</button>
+
+					<h3 id="title__modal1">Galerie photo</h3>
+				</div>
+				<div class="modal_gallery"></div>
+				<div id="display__small" class="display__small">
+					<!-- affichage des travaux en miniatures -->
+				</div>
+				<div class="delete__picture">
+					<!-- Ouverture de la deuxième modale -->
+					<button type="submit" id="validate__modal" formaction="modal.html#modal2">Ajouter une photo</button>
+					<a id="delete__picture">Supprimer la galerie</a>
+				</div>
+			</div>
+		</aside>
+
+		<!--<aside id="modal2" class="modal" aria-labelledby="title-modal2">
+			<div class="modal__container js__modal__stop" id="modal__container2">
+				<div class="close__modal">
+					<button class="return__btn" id="return__modal2">
+						<i class="fa-solid fa-arrow-left"></i>
+					</button>
+					<button class="js__close__modal2" id="close__modal2">
+						<i class="fa-solid fa-xmark"></i>
+					</button>
+				</div>
+				<h2 id="title__modal2">Ajout photo</h2>
+				<form id="add__form">
+
+					<div id="add__picture">
+						<img id="file-ip-1-preview" src="#" alt="">
+
+						<i id="icons__img" class="fa-regular fa-image"></i>
+						<label for="image" id="add__picture__btn">+ Ajouter photo</label>
+						<input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>
+						<p id="size__picture">jpg, png : 4mo max</p>
+					</div>
+					<div class="title__picture">
+						<label for="title" class="label__form">Titre</label>
+						<input id="title" name="title" class="formulaire" required><br>
+					</div>
+					<div class="categories__picture">
+						<label for="list__category" id="choose__category" class="label__form">Catégories</label>
+						<select name="category" id="list__category" class="formulaire" required>
+							<option value="">Veuillez sélectionner la catégorie</option>
+							<!-- Affichage des catégories via l'API -->
+		<!--</select>
+		</div>
+		<div class="validate__btn2">
+			<button id="validate__modal2">Valider</button>
+		</div>
+
+		</form>
+		</div>
+		</aside>-->
+
 	</main>
 
 	<footer>
