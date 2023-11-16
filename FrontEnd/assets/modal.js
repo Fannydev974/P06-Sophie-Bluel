@@ -1,43 +1,44 @@
 let listGalleryModal = [];
+
 let modal1 = null;
 let modal2 = null;
 
 const openModal1 = async function (e) {
     e.preventDefault();
 
-    const target = e.target.getAttribute("href");
-    if (target) {//.firstModal("#")
-        modal1 = document.querySelector(target);
+    const firstModify = e.target.getAttribute("href");
+    if (firstModify) {
+        modal1 = document.querySelector(firstModify);
     } else {
-        modal1 = await (target)
+        modal1 = await (firstModify)
     }
-    //modal1.style.display = null //Retirer le display:none du html
-    modal1.removeAttribute('aria-hidden');
-    modal1.setAttribute('aria-modal', true);
-    modal1 = target
+    modal1.style.display = null //Retirer le display:none du html
+    modal1.removeAttribute('aria-hidden');//supprime aria-hidden grâce a remove attribute
+    modal1.setAttribute('aria-modal', true);//Ajoute un nouvel attribut ou change la valeur d'un attribut existant pour l'élément spécifié
+    modal1 = firstModify
     modal1.addEventListener('click', openModal1);
     modal1.querySelector('.modify__projets').addEventListener('click', openModal1);
     modal1.querySelector('.js__modal__stop').addEventListener('click', stopPropagation);
 }
 
-const closeModal = function (e) {
+const btnCloseModal1 = function (e) {
     if (modal1 === null) return
     e.preventDefault()
     modal1.style.display = "none";
     modal1.setAttribute('aria-hidden', 'true');
     modal1.removeAttribute('aria-modal');
-    modal1.querySelector('.js__close__modal').removeEventListener('click', closeModal);
+    modal1.querySelector('.js__close__modal1').removeEventListener('click', closeModal1);
     modal1.querySelector('.js__modal__stop').removeEventListener('click', stopPropagation);
     modal1 = null
 }
 
 const openModal2 = async function (event) {
     event.preventDefault();
-    const target2 = event.target.getAttribute("formaction");
-    if (target2) {//.firstModal("#")
-        modal2 = document.querySelector(target2);
+    const secondModify = event.target.getAttribute("formaction");
+    if (secondModify) {
+        modal2 = document.querySelector(secondModify);
     } else {
-        modal2 = await (target2);
+        modal2 = await (secondModify);
     }
     modal2.style.display = null;
     modal2.removeAttribute("aria-hidden");
@@ -71,10 +72,10 @@ document.querySelectorAll(".redone__btn").forEach((a) => {
     a.addEventListener("click", openModal1);
 });
 // Fermeture Modale 1
-function btnCloseModal() {
-    const modalBtn1 = document.querySelector(".js__close__modal");
+function btnCloseModal1() {
+    const modalBtn1 = document.querySelector(".js__close__modal1");
     modalBtn1.addEventListener('click', () => {
-        closeModal();
+        closeModal1();
     });
 }
 // Fermeture Modale 2
