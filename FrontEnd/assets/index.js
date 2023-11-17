@@ -144,11 +144,6 @@ if (token) {
     modifyLabel.classList.add("modify__label");
     modifyLabel.textContent = "Mode édition";
 
-    // Création du bouton dans la barre de modification
-    const buttonPublication = document.createElement("button");
-    buttonPublication.classList.add("btn_publication");
-    buttonPublication.textContent = "publier les changements";
-    buttonPublication.type = "submit";
 
     // Apparition du bouton modifier quand connecté
     const modifyProject = document.getElementById("modify__projets");
