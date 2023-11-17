@@ -39,7 +39,7 @@
 			<section id="introduction">
 				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="">
-					<!--<a id="intro__modify" class="redone__btn"><i class="fa-regular fa-pen-to-square"></i>Modifier</a>-->
+
 				</figure>
 				<article>
 					<h2>Designer d'espace</h2>
@@ -54,6 +54,7 @@
 				</article>
 			</section>
 			<section id="portfolio">
+				<!--Partie modifier page de connexion-->
 				<div class="modify">
 					<h2>Mes Projets</h2>
 					<a href="#" class="openModal1"><i class="fa-regular fa-pen-to-square"></i>Modifier</a>
@@ -62,8 +63,6 @@
 
 				<div class="gallery"></div>
 			</section>
-
-			<!--<div class="modal_gallery"></div>-->
 
 			<section id="contact">
 				<h2>Contact</h2>
@@ -83,6 +82,7 @@
 		<div class="modal-container" style="display: null;">
 			<div class="overlay modal-trigger"></div>
 
+			<!--Modal wrapper = que la modal-->
 			<div class="modal-wrapper">
 				<div class="modal-trigger">
 					<i class="fa-solid fa-xmark"></i>
@@ -91,7 +91,8 @@
 				<h3>Galerie Photo</h3>
 				<div class="modal_gallery"></div>
 
-				<div class="add-btn">
+				<!--boutton Ajouter une photo-->
+				<div class="validate-btn">
 					<button id="validate__modal">Ajouter une photo</button>
 				</div>
 
@@ -106,11 +107,12 @@
 				<div class="modal-return">
 					<i class="fa-solid fa-arrow-left"></i>
 				</div>
-
+				<!--Bouton fermer-->
 				<div class=" modal-trigger1">
 					<i class="fa-solid fa-xmark"></i>
 				</div>
 
+				<!--Ajout formulaire-->
 				<h3 id="title__modal2">Ajout photo</h3>
 				<form id="add__form">
 
@@ -119,7 +121,7 @@
 
 						<i id="icons__img" class="fa-regular fa-image"></i>
 						<label for="image" id="add__picture__btn">+ Ajouter photo</label>
-						<input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>
+						<!--<input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>-->
 						<p id="size__picture">jpg, png : 4mo max</p>
 					</div>
 					<div class="title__picture">
@@ -128,10 +130,11 @@
 					</div>
 					<div class="categories__picture">
 						<label for="list__category" id="choose__category" class="label__form">Catégories</label>
-						<select name="category" id="list__category" class="formulaire" required>
-							<option value="">Veuillez sélectionner la catégorie</option>
-							Affichage des catégories via l'API
-						</select>
+						<input id="categorys" name="categorys" class="formulaire" required><br>
+						<!--<select name="category" id="list__category" class="formulaire" required>
+						<option value="">Veuillez sélectionner la catégorie</option>
+						Affichage des catégories via l'API
+						</select>-->
 					</div>
 					<div class="validate__btn2">
 						<button id="validate__modal2">Valider</button>

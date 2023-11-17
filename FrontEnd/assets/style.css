@@ -384,6 +384,7 @@ input {
 
 label {
 	margin: 2em 0 1em 0;
+	display: flex;
 }
 
 
@@ -507,12 +508,23 @@ a {
 	height: 95px;
 }
 
-.add-btn {
+.validate-btn {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-top: 20px;
 }
+
+/***Modal 2 ***/
+
+#choose__category label {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	width: 379px;
+}
+
 
 
 /** GESTION DES icones **/
@@ -545,6 +557,63 @@ a {
 	justify-content: center;
 	align-items: center;
 	color: #ffffff;
+}
+
+#add__picture {
+	background-color: #E8F1F6;
+	margin-top: 5%;
+	padding-bottom: 5%;
+}
+
+#add__picture .fa-regular {
+	display: flex;
+	justify-content: center;
+	font-size: 50px;
+	margin-top: 15px;
+}
+
+#add__picture label {
+	display: flex;
+	justify-content: center;
+	border: 1px #CBD6DC solid;
+	border-radius: 60px;
+	background: #CBD6DC;
+	color: #306685;
+	font-family: "Syne", sans-serif;
+	font-weight: 700;
+	font-size: 13px;
+	width: 190px;
+	height: 30px;
+	align-items: center;
+	text-align: center;
+	padding: 3px 20px;
+	margin-left: 130px;
+	cursor: pointer;
+}
+
+#size__picture {
+	display: flex;
+	justify-content: center;
+}
+
+#validate__modal2 {
+	display: flex;
+	background-color: #A7A7A7;
+	justify-content: center;
+	border: 1px #A7A7A7 solid;
+	border-radius: 60px;
+	color: #fff;
+	font-family: "Syne", sans-serif;
+	font-weight: 700;
+	font-size: 13px;
+	width: 190px;
+	height: 30px;
+	align-items: center;
+	text-align: center;
+	padding: 3px 20px;
+	margin-left: 160px;
+	margin-top: 50px;
+	cursor: pointer;
 }
 
 

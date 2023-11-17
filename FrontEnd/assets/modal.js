@@ -27,7 +27,7 @@ document.querySelectorAll(".openModal1").forEach((a) => {
     a.addEventListener("click", openModal1);
 });
 
-const btnAdd = document.querySelector(".add-btn").addEventListener('click', openModal2)
+const btnValidate = document.querySelector(".validate-btn").addEventListener('click', openModal2)
 const modalRetunr = document.querySelector(".modal-return").addEventListener('click', () => {
     openModal1()
     closeModal2()
@@ -39,7 +39,7 @@ const getWorksModal = async () => {
         .then((data) => { listGalleryModal = data })
         .then(() => {
             createGalleryModal()
-            // APPEL FONCTION DE SUPPRESIO§N DES PRO§JET 
+            // APPEL FONCTION DE SUPPRESSION DES PROJET 
             // APPEL FONCTION D'AJOUT DE PROJET
         })
         .catch((error) => {
@@ -75,5 +75,5 @@ const createGalleryModal = () => {
     });
 }
 
-// Actions de la fonctions de suppréssion
-//ACtions de la fonction d'ajout
+// Actions de la fonction de suppréssion
+//Actions de la fonction d'ajout
