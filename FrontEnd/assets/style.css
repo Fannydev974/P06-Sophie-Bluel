@@ -456,6 +456,14 @@ a {
 	justify-content: center;
 }
 
+.modal1 {
+	display: none;
+}
+
+.modal2 {
+	display: none;
+}
+
 /*icone croix fermer modal*/
 .fa-xmark:before {
 	margin-right: 10px;

@@ -28,7 +28,7 @@ document.querySelectorAll(".openModal1").forEach((a) => {
 });
 
 const btnValidate = document.querySelector(".validate-btn").addEventListener('click', openModal2)
-const modalRetunr = document.querySelector(".modal-return").addEventListener('click', () => {
+const modalReturn = document.querySelector(".modal-return").addEventListener('click', () => {
     openModal1()
     closeModal2()
 })
@@ -73,53 +73,46 @@ const createGalleryModal = () => {
         deleteBtn.appendChild(iconDelete)
         figure.appendChild(deleteBtn)
     });
-    let iconsDelete = document.querySelectorAll(".icon_delete");
-    for (let iconDelete of iconsDelete) {
-        iconDelete.addEventListener('click', deletePicture)
-    }
 }
 
-
-
-// Actions de la fonction de suppréssion
-function deletePhoto(photoId) {
-    fetch('http://localhost:5678/api/works/§{photoId}', {
+///---------------SUPPRIMER----------------///
+//creer fonction pour supprimer les projets
+function deletProjet(deleteId) {
+    fetch('http://localhost:5678/api/works/§{deleteId}', {
         method: "DELETE",
         headers: {
-            Autorization: "Bearer" + localStorage.getItem("token"),
-            Accept: "application/Json",
-            "content-Type": "application/Json",
+            "Autoriation": "Bearer" + localStorage.getItem(token),
+            "Accept": "application/Json",
+            "content-type": "application/Json",
         },
-
-    }).then(response) => {
+    }).then((response) => {
         if (response.status == 204) {
-            console.log("Suppression du projet");
-            //Recherger la gallerie dans la modale
-            fetch('http://localhost:5678/api/works').then(response => response.Json).then(data => {
+            console.log("suppression du preojet");
+            //Recharger la gallerie dans la modale
+            fetch('http://localhost:5678/api/works').then(response.json()).then(data => {
                 getWorksModal(data, listGalleryModal);
             });
-            //Recharger la gallerie dans la page
-            fetch('http://localhost:5678/api/works').then(response => response.Json).then(data => {
-                displayProjects(data);
-            });
         } else {
-            alert("Erreur dans la suppression du projet");
+            alert("Erreur lors de la suppression du projet");
         }
-    }.catch (error) => {
+    }).catch((error) => {
         alert(error);
-    };
+    });
 
-    //Actions de la fonction d'ajout eventListener
+    //Gestionnaire d'evenement pour gallerie modale//
     listGalleryModal.addEventListener("click", function (event) {
-        const poubelle = event.target.closes('.poubelle');
-        if (poubelle) {
-            const figure = poubelle.parent.Node;
-            const photoId = figure.dataset.id;
-            const confirmDelete = confirm("êtes-vous sûr de vouloir supprimer ce projet?");
+        const trashCan = event.target.closest('.trash-can');
+        if (trashCan) {
+            const figure = trashCan.parentNode;
+            const deleteId = figure.dataset.id;
+            const confirmDelete = confirm("Voulez-vous vraiment supprimer ce projet?");
             if (confirmDelete) {
-                deletePhoto(photoId);
+                deletePicture(deleteId);
             }
         }
-    })
+    });
 }
-////////////Revoir function delete 
+
+
+
+
