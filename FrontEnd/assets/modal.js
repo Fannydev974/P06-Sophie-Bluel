@@ -40,6 +40,7 @@ const getWorksModal = async () => {
         .then(() => {
             createGalleryModal()
             // APPEL FONCTION DE SUPPRESSION DES PROJET 
+            deletePicture();
             // APPEL FONCTION D'AJOUT DE PROJET
         })
         .catch((error) => {
@@ -47,7 +48,6 @@ const getWorksModal = async () => {
         })
 }
 getWorksModal();
-
 
 const createGalleryModal = () => {
     const modal_gallery = document.querySelector(".modal_gallery");
@@ -69,49 +69,71 @@ const createGalleryModal = () => {
         deleteBtn.classList.add("btn__delete");
         // Intégration du l'icone delete
         const iconDelete = document.createElement('i');
-        iconDelete.classList = ("fa-solid fa-trash-can");
+        iconDelete.classList.add("fa-solid");
+        iconDelete.classList.add("fa-trash-can");
+        iconDelete.setAttribute("data-projectId", project.id);
         deleteBtn.appendChild(iconDelete)
         figure.appendChild(deleteBtn)
     });
 }
-
 ///---------------SUPPRIMER----------------///
-//creer fonction pour supprimer les projets
-function deletProjet(deleteId) {
-    fetch('http://localhost:5678/api/works/§{deleteId}', {
-        method: "DELETE",
-        headers: {
-            "Autoriation": "Bearer" + localStorage.getItem(token),
-            "Accept": "application/Json",
-            "content-type": "application/Json",
-        },
-    }).then((response) => {
-        if (response.status == 204) {
-            console.log("suppression du preojet");
-            //Recharger la gallerie dans la modale
-            fetch('http://localhost:5678/api/works').then(response.json()).then(data => {
-                getWorksModal(data, listGalleryModal);
-            });
-        } else {
-            alert("Erreur lors de la suppression du projet");
-        }
-    }).catch((error) => {
-        alert(error);
-    });
 
-    //Gestionnaire d'evenement pour gallerie modale//
-    listGalleryModal.addEventListener("click", function (event) {
-        const trashCan = event.target.closest('.trash-can');
-        if (trashCan) {
-            const figure = trashCan.parentNode;
-            const deleteId = figure.dataset.id;
-            const confirmDelete = confirm("Voulez-vous vraiment supprimer ce projet?");
-            if (confirmDelete) {
-                deletePicture(deleteId);
-            }
-        }
-    });
+const deletePicture = () => {
+    const iconTrashDelete = document.querySelectorAll(".fa-solid.fa-trash-can");
+
+    iconTrashDelete.forEach((icon) => {
+        icon.addEventListener("click", (e) => {
+            e.preventDefault();
+            const projectId = e.target.getAttribute("data-projectId")//identifie la cible courante pour l'évènement lorsque celui-ci traverse le DOM. Elle fait toujours référence à l'élément sur lequel le gestionnaire d'évènement a été attaché 
+            const userToken = localStorage.getItem("token");
+            console.log(userToken);
+
+            fetch('http://localhost:5678/api/works/§{projectId}', {
+                method: "DELETE",
+                headers: {
+                    Accept: "*/*",
+                    Autorization: 'Bearer §{userToken}',
+                },
+            })
+                .then((response) => {
+                    if (response.status == 401) {
+                        return null;
+                    }
+                    return response.json();
+                })
+                .then((dataRes) => {//voir pour changer dataRes ou supprimer
+                    if (dataRes === null) {
+                        console.log("Projet supprimé avec succès");
+                    }
+                })
+        })
+    })
 }
+
+
+///Ajout de projet//////////
+//l'orsque l'on click sur le btn d'ajout de photo
+// addPictureBtn.addEventListener("click", function () {
+
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
