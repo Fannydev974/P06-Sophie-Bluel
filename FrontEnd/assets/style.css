@@ -469,7 +469,9 @@ a {
 	margin-right: 10px;
 }
 
-
+#icons__img {
+	display: none;
+}
 
 .overlay {
 	position: absolute;

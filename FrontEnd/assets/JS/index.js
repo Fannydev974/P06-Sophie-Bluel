@@ -16,8 +16,9 @@ const getWorks = async () => {
 
         listGallery = await responseWorks.json();
         listCategories = await responseCategories.json();
-        console.log(listGallery)
-        console.log(token)
+        //console.log(listGallery)
+        //console.log(token)
+
         //Enlèvement des btn filtre sur la page "modifier"
         if (!token) {// '!'inversion du résultat de la condition (false true)
             createCategory();

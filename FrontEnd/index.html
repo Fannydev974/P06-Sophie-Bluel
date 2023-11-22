@@ -90,6 +90,7 @@
 
 				<h3>Galerie Photo</h3>
 				<div class="modal_gallery"></div>
+				<p class="delete-message"></p>
 
 				<!--boutton Ajouter une photo-->
 				<div class="validate-btn">
@@ -98,7 +99,7 @@
 
 			</div>
 		</div>
-
+		<div class="modal-add-img"></div>
 		<div class="modal-container1" style="display: none;">
 			<div class="overlay modal-trigger1"></div>
 
@@ -113,6 +114,7 @@
 				</div>
 
 				<!--Ajout formulaire-->
+				<div class="container-add-img"></div>
 				<h3 id="title__modal2">Ajout photo</h3>
 				<form id="add__form">
 
@@ -122,17 +124,25 @@
 						<i id="icons__img" class="fa-regular fa-image"></i>
 						<label for="image" id="add__picture__btn">+ Ajouter photo</label>
 						<p id="size__picture">jpg, png : 4mo max</p>
+						<p class="errorImg"></p>
 					</div>
-					<div class="title__picture">
-						<label for="title" class="label__form">Titre</label>
-						<input id="title" name="title" class="formulaire" required><br>
-					</div>
-					<div class="categories__picture">
-						<label for="list__category" id="choose__category" class="label__form">Catégories</label>
-						<input id="categorys" name="categorys" class="formulaire" required><br>
+
+					<div class="form-img">
+						<label for="title" class="label">Titre</label>
+						<input type="text" class="labelModal" id="title" name="title">
+						<label for="categorie" class="labelcategorie">Catégorie</label>
+						<select name="categorie" id="categorie">
+							<option value="1">Objets</option>
+							<option value="2">Appartements</option>
+							<option value="3">Hôtel et Restaurants</option>
+						</select>
+
+						<!--<input id="categorys" name="categorys" class="formulaire" required><br>-->
+						</select>
 					</div>
 					<div class="validate__btn2">
 						<button id="validate__modal2">Valider</button>
+						<p class="error"></p>
 					</div>
 
 				</form>
@@ -145,8 +155,8 @@
 					</ul>
 				</nav>
 			</footer>
-			<script src="./assets/index.js"></script>
-			<script src="./assets/modal.js"></script>
+			<script src="./assets/JS/index.js"></script>
+			<script src="./assets/JS/modal.js"></script>
 </body>
 
 </html>
