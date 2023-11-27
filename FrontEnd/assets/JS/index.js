@@ -7,7 +7,7 @@ let listGallery = [];
 let listCategories = [];
 
 //Fonction getWorks pour récuperer les travaux
-const getWorks = async () => {
+export const getWorks = async () => {
     try {
         const responseWorks = await fetch("http://localhost:5678/api/works");
         const responseCategories = await fetch("http://localhost:5678/api/categories");
@@ -24,8 +24,8 @@ const getWorks = async () => {
             createCategory();
         }
         createGallery(listGallery);
-        //createGalleryModal(listGalleryModal);
-
+        // createGalleryModal(listGalleryModal);
+        //getWorksModal();
     } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des travaux et des catégories :", error);
     }
@@ -35,6 +35,8 @@ getWorks();
 
 //fonction pour créer la gallerie et pouvoir supprimer la gallerie du HTML
 const createGallery = (arrayGallery) => {
+    console.log('arrayGallery: ', arrayGallery);
+
     const gallery = document.querySelector(".gallery");
 
     //Fonction d'éffacement de la gallerie et affichage de celle qui sera filtré
@@ -42,7 +44,8 @@ const createGallery = (arrayGallery) => {
         gallery.removeChild(gallery.firstChild);//instruction
     }
 
-    for (project of arrayGallery) {//Project = mon image
+    for (const project of arrayGallery) {//Project = mon image
+        console.log('project :', project);
         const figure = document.createElement("figure");
 
         const image = document.createElement("img");
@@ -125,7 +128,9 @@ if (token) {
         sessionStorage.removeItem("token");
     });
 
+
+    /* const ModalLink = document.querySelector('.openModal1');
+     const editor = document.querySelector('.editor-mode');
+     ModalLink.style.display = null;
+     editor.style.display = null;*/
 }
-
-
-
