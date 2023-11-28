@@ -6,6 +6,7 @@ const modal1 = document.querySelector(".modal-container")
 const modal2 = document.querySelector(".modal-container1")
 const modalGallery = document.querySelector(".modal_gallery")
 
+
 // ***** OUVERTURE DE LA MODALE DE SUPPRESION *****//
 const openModal1 = () => {
     modal1.style.display = null
@@ -97,7 +98,7 @@ const deletePicture = async (event) => {
     console.log(projectId);
     const userToken = sessionStorage.getItem("token");
     console.log(userToken);
-    // let projectId = event.target.id
+    //let projectId = event.target.id
 
     await fetch(`http://localhost:5678/api/works/${projectId}`, {
         method: "DELETE",
@@ -115,6 +116,77 @@ const deletePicture = async (event) => {
 }
 
 
+//***********AJOUT DE PROJET*****************//
+
+
+const addPictureBtn = document.getElementById("add__picture");
+const form = document.querySelector("#dataForm");
+const titre = document.getElementById("title").value;
+const imageAjout = document.getElementById("image");
+const previewPicture = document.querySelector("#previewPicture");
+
+const changePicture = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const image = formData.get("image");
+    const title = formData.get("title");
+    const category = formData.get("list-category");
+    const picture = { image, title, category };
+
+    if ((image, title, category)) {
+        validate__modal2.style.background = "#1D6154";
+    }
+    if (image) {
+        previewPicture.src = URL.createObjectURL(image);
+
+        if (previewPicture) {
+            previewPicture.style.visibility = "visible";
+            addPictureBtn.style.visibility = "hidden";
+            document.getElementById("add__picture").style.visibility = "hidden";
+        }
+    }
+
+    addPictureBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (addPictureBtn) {
+            addPictureBtn.click();
+        }
+    });
+};
+dataForm.addEventListener("change", changePicture);
+
+const addPictureProject = async () => {
+    const formData = new FormData(form);
+    //console.log(formData);
+
+    const userToken = sessionStorage.getItem("userToken");
+    //const dataToken = sessionStorage.getItem("isConnected", true);
+    const appelProjet = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer " + userToken,
+        },
+        body: formData,
+    }).then((res) => {
+        if (res.ok) {
+            form.reset()
+            previewPicture.src = "";
+
+            location.reload()
+        }
+    }).then((refresh) => {
+        if (refresh) {
+            modalWorks(arrayWorks)
+        }
+    })
+};
+
+
+validate__modal2.addEventListener("click", async (e) => {
+    e.preventDefault();
+    await addPictureProject();
+});
 
 
 
@@ -123,43 +195,10 @@ const deletePicture = async (event) => {
 
 
 
-
-
-
-
-
-//***********Ajout Projets*****************//
-/*const buttonValidate = document.getElementById("validate__modal")
-buttonValidate.addEventListener("click", openModal2);
-
-// Affichage des catégories dans la modale 2
-function pictureCategory() {
-    fetch("http://localhost:5678/api/categories")
-        .then((response) => response.json())
-        .then((categories) => {
-            const sectionChooseCategory = document.getElementById("list-category");
-            for (let index = 0; index < categories.length; index++) {
-                const categoryIndex = categories[index];
-
-                // Création d'une balise dédiée à un bouton filtre de la gallerie
-                const chooseCategory = document.createElement('option');
-                chooseCategory.classList.add("list-category");
-                chooseCategory.innerHTML = categoryIndex.name;
-                chooseCategory.value = categoryIndex.id;
-
-                // Lien entre la balise input et la section filtre
-                sectionChooseCategory.appendChild(chooseCategory);
-            }
-        })
-        .catch((error) => {
-            alert(`Erreur :` + error);
-        });
-}
-
-// Prévisualisation de l'image selectionné
+/*// Prévisualisation de l'image selectionné
 function addPictureBtn() {
-    const addPictureBtn = document.getElementById("add__picture__btn");
-    addPictureBtn.addEventListener('click', (event) => {
+    const addPictureBtn = document.getElementById("add__picture");
+    addPictureBtn.addEventListener('change', (event) => {
         event.preventDefault();
         if (event.target.files.length >= 0) {
             const src = URL.createObjectURL(event.target.files[0]);
@@ -179,9 +218,12 @@ function colorBtnValidate() {
     validateLabelCategorie.forEach((control) =>
         control.addEventListener("change", function () {
             if (title.value !== "" && category.value !== "") {
+                buttonValidatePhoto.style.background = "#1D6154";
+                buttonValidatePhoto.style.cursor = "pointer";
                 buttonValidatePhoto.disabled = false;//désactiver l'attribut
             }
             if (title.value == "") {
+                buttonValidatePhoto.style.background = "#a7a7a7";
                 buttonValidatePhoto.disabled = false;
             }
         })
@@ -195,6 +237,7 @@ function validateButton() {
         event.preventDefault();
         stopPropagation(event);
         selectElementsworks();
+
     });
 }
 
@@ -225,7 +268,7 @@ function selectElementsworks() {
     formData.append("category", category.value);
     formData.append("image", fileInput.files[0]);
 
-    const userToken = localStorage.getItem("userToken");
+    const userToken = sessionStorage.getItem("userToken");
     const preview = document.querySelector("#file-ip-1-preview");
     const iconImg = document.getElementById("icon-img");
 

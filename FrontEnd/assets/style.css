@@ -145,7 +145,10 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 25px 0;
+	align-items: baseline;
+	margin-left: 3%;
+	margin-right: 3%;
 }
 
 section {
@@ -230,28 +233,6 @@ link {
 	margin-bottom: 1em;
 
 }
-
-/*.modify a {
-	display: none;
-}*/
-
-/*#modify {
-	display: none;
-}
-
-#modifier-introduction {
-	display: none;
-}
-
-
-.modal-btn {
-	display: none;
-}
-
-#modify-projets {
-	display: none;
-
-}*/
 
 .filter {
 	display: flex;
@@ -464,10 +445,6 @@ a {
 	justify-content: center;
 }
 
-.modal1 {
-	display: none;
-}
-
 .modal2 {
 	display: none;
 }
@@ -627,6 +604,10 @@ a {
 	padding: 3px 20px;
 	margin-left: 130px;
 	cursor: pointer;
+}
+
+#add__picture input {
+	display: none;
 }
 
 #size__picture {

@@ -1,5 +1,5 @@
 const token = sessionStorage.getItem("token")//getItem renvoi la valeur associée a la clé"token"passé en paramètre//
-console.log(token)
+//console.log(token)
 
 //----Récupérer la gallerie et les catégories depuis l'api
 
@@ -35,7 +35,7 @@ getWorks();
 
 //fonction pour créer la gallerie et pouvoir supprimer la gallerie du HTML
 const createGallery = (arrayGallery) => {
-    console.log('arrayGallery: ', arrayGallery);
+    //console.log('arrayGallery: ', arrayGallery);
 
     const gallery = document.querySelector(".gallery");
 
@@ -45,7 +45,7 @@ const createGallery = (arrayGallery) => {
     }
 
     for (const project of arrayGallery) {//Project = mon image
-        console.log('project :', project);
+        // console.log('project :', project);
         const figure = document.createElement("figure");
 
         const image = document.createElement("img");
@@ -85,10 +85,7 @@ const createCategory = () => {
                 buttonName.classList.add("buttonName");
                 filter.appendChild(buttonName);
             }
-
         )
-    // Rajout de la class active au bouton cliqué
-
     document.querySelectorAll(".buttonName")
         .forEach((spanButton) => {
             spanButton.addEventListener('click', (event) => {
@@ -127,10 +124,8 @@ if (token) {
         // Suppresion de token & Redirection
         sessionStorage.removeItem("token");
     });
-
-
-    /* const ModalLink = document.querySelector('.openModal1');
-     const editor = document.querySelector('.editor-mode');
-     ModalLink.style.display = null;
-     editor.style.display = null;*/
+    const ModalLink = document.querySelector('.openModal1');
+    const editor = document.querySelector('.editor-mode');
+    ModalLink.style.display = null;
+    editor.style.display = null;
 }

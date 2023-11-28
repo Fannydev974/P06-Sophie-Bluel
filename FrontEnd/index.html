@@ -16,7 +16,7 @@
 
 <body>
 	<!-- MODE EDITOR -->
-	<div class="editor-mode">
+	<div class="editor-mode" style="display: none;">
 		<div class="edit-text">
 			<i class="fa-solid fa-pen-to-square"></i>
 			<p>Mode édition</p>
@@ -57,7 +57,8 @@
 			<!--Partie modifier page de connexion-->
 			<div class="modify">
 				<h2>Mes Projets</h2>
-				<a href="#" class="openModal1"><i class="fa-regular fa-pen-to-square"></i>Modifier</a>
+				<a href="#" class="openModal1" style="display: none;"><i class=" fa-regular
+					fa-pen-to-square"></i>Modifier</a>
 			</div>
 			<div class="btnFilter"></div>
 
@@ -99,9 +100,9 @@
 
 		</div>
 	</div>
-	<div class="modal-add-img"></div>
+	<!-- <div class="modal-add-img"></div> -->
 	<div class="modal-container1" style="display: none;">
-		<div class="overlay modal-trigger1"></div>
+		<!-- <div class="overlay modal-trigger1"></div> -->
 
 		<div class="modal-wrapper">
 
@@ -113,51 +114,56 @@
 				<i class="fa-solid fa-xmark"></i>
 			</div>
 
-			<!--Ajout formulaire-->
-			<div class="container-add-img"></div>
-			<h3 id="title__modal2">Ajout photo</h3>
-			<form id="add__form">
+			<form id="dataForm" enctype="multipart/form-data" action='#' method="post">
+				<!--L’attribut spécifie comment les données de formulaire doivent être encodées(que avec method 'post')-->
 
-				<div id="add__picture">
-					<img id="file-ip-1-preview" src="#" alt="">
+				<!--Ajout formulaire-->
+				<div class="container-add-img"></div>
+				<h3 id="title__modal2">Ajout photo</h3>
+				<form id="add__form">
 
-					<i id="icons__img" class="fa-regular fa-image"></i>
-					<label for="image" id="add__picture__btn">+ Ajouter photo</label>
-					<p id="size__picture">jpg, png : 4mo max</p>
-					<p class="errorImg"></p>
-				</div>
+					<div id="add__picture">
+						<img id="file-ip-1-preview" src="#" alt="">
 
-				<div class="form-img">
-					<label for="title" class="label">Titre</label>
-					<input type="text" class="labelModal" id="title" name="title">
-					<label for="categorie" id="choose-category" class="labelcategorie">Catégorie</label>
-
-
-					<select name="categorie" class="categorie" id="list-category">
-						<!--<input id="categorys" name="categorys" class="formulaire" required><br>-->
-						<option value="1">Objets</option>
-						<option value="2">Appartements</option>
-						<option value="3">Hôtel et Restaurants</option>
-					</select>
+						<i id="icons__img" class="fa-regular fa-image"></i>
+						<label for="image" id="add__picture__btn">+ Ajouter photo</label>
+						<input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>
+						<p id="size__picture">jpg, png : 4mo max</p>
+						<p class="errorImg"></p>
+					</div>
+					<img id="previewPicture" alt="image prévisualisée"></img>
+					<div class="form-img">
+						<label for="title" class="label">Titre</label>
+						<input type="text" class="labelModal" id="title" name="title">
+						<label for="categorie" id="choose-category" class="labelcategorie">Catégorie</label>
 
 
-				</div>
-				<div class="validate__btn2">
-					<button id="validate__modal2">Valider</button>
-					<p class="error"></p>
-				</div>
-			</form>
+						<select name="categorie" class="categorie" id="list-category">
+							<!--<input id="categorys" name="categorys" class="formulaire" required><br>-->
+							<option value="1">Objets</option>
+							<option value="2">Appartements</option>
+							<option value="3">Hôtel et Restaurants</option>
+						</select>
+
+
+					</div>
+					<div class="validate__btn2">
+						<button id="validate__modal2">Valider</button>
+						<p class="error"></p>
+					</div>
+				</form>
 		</div>
-		</aside>
-		<footer>
-			<nav>
-				<ul>
-					<li>Mentions Légales</li>
-				</ul>
-			</nav>
-		</footer>
-		<script type="module" src="./assets/JS/index.js"></script>
-		<script type="module" src="./assets/JS/modal.js"></script>
+	</div>
+
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
+	<script type="module" src="./assets/JS/index.js"></script>
+	<script type="module" src="./assets/JS/modal.js"></script>
 
 </body>
 

@@ -1,4 +1,4 @@
-// GESTION DU FORMULAIRE DE CONNEXION //
+//********GESTION DU FORMULAIRE DE CONNEXION**********//
 
 const login = async () => {
     const myError = document.getElementById('Error');
