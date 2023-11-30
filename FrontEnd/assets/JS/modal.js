@@ -117,15 +117,100 @@ const deletePicture = async (event) => {
 
 
 //***********AJOUT DE PROJET*****************//
+const addForm = document.getElementById("form__add");
+const input_file = document.createElement("input");
+//const btnValidate = document.getElementById('validate__modal2');
+// récupérer l'image de l'utilisateur dans une variable (file), et faire apparaitre la miniature de l'image uploaded dans le formulaire avant validation 
+const title = document.getElementById("title");
+const selectCategory = document.getElementById("list-category")
+//Vérification des champs
+//Il faut une fonction validateForm que tu appel au changement du formulaire avec l'évènement 'Change'
+//Elle doit changer la couleur du bouton uniquement si tous les champs valides.
+const validateForm = () => {
+    if (addForm.value !== "" && selectCategory.value !== "default" && input_file.files.length > 0) {//si tous les champs de ton formulaire ne sont pas vide
+        //mon bouton se met en vert
+        btnValidate.style.background = "#1D6154";
+        btnValidate.disabled = false;
+        btnValidate.style.cursor = "pointer";
+    } else {
+        btnValidate.disabled = true;
+        btnValidate.style.background = "#A7A7A7";
+        btnValidate.style.cursor = "auto";
+    }
+};
+//if (title !== null) {
+// title.addEventListener('input', validateForm);
+//selectCategory.addEventListener('input', validateForm);
+// input_file.addEventListener('input', validateForm);
+addForm.addEventListener('click', addPicture);
+//}
 
 
-const addPictureBtn = document.getElementById("add__picture");
-const form = document.querySelector("#dataForm");
-const title = document.getElementById("title").value;
-const imageAjout = document.getElementById("image");
-const previewPicture = document.querySelector("#previewPicture");
+const formAdd = document.getElementById('form__add')
+formAdd.addEventlistener('change', validateForm)
 
-const changePicture = (e) => {
+
+
+//Partie d'affichage.
+//Il faut une fonction previewFile que tu appel au changement de l'input de type file avec l'évènement 'Change'
+//Tu créer une variable qui va récupérer ton files[0], ensuite s'il existe tu créer ta fonction de preview.
+input_file.addEventListener("change", previewFile);
+function previewFile(e) {
+    const file_extension_regex = /\.(jpe?g|png)$/i;//file_extension_regex vérifier si une chaîne se termine par l'une des extensions de fichier spécifiées (.jpeg, .jpg, ou .png), et la marque 'i' à la fin de la regex indique qu'elle est insensible à la casse.
+    if (this.files.length === 0 || !file_extension_regex.test(this.files[0].name)) {
+        alert("Format non pris en charge");
+        resetForm();
+        return;
+    }
+
+    let file = e.target.files[0];
+    let URL = URL.createObjectURL(file);
+}
+
+//Partie d'ajout.
+//Il faut une fonction AddPicture que tu appel au submit du formulaire
+// Sounission du formulaire et envoie du projet vers la base de données
+
+async function addPicture(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", input_file.files[0]);
+    formData.append('title', input_file.value);
+    formData.append('category', selectCategory.value);
+
+    await fetch('http://localhost:5678/api/works', {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + userToken,
+        },
+        body: formData,
+    })
+        .then(res => {
+            if (res.ok) {
+                getWorks();
+                resetForm();
+                openModal1()
+            } else if (res.status == "401") {
+                alert('veuillez vous reconnecter');
+
+            }
+        })
+}
+
+
+
+
+
+
+
+
+//const addPictureBtn = document.getElementById("add__picture");
+//const form = document.querySelector("#dataForm");
+//const title = document.getElementById("title").value;
+//const imageAjout = document.getElementById("image");
+//const previewPicture = document.querySelector("#previewPicture");
+
+/*const changePicture = (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
@@ -149,8 +234,8 @@ const changePicture = (e) => {
 
     addPictureBtn.addEventListener("click", (event) => {
         event.preventDefault();
-        if (addPictureBtn) {
-            addPictureBtn.click();
+        if (image) {
+            image.click();
         }
     });
 };
@@ -161,7 +246,8 @@ const addPictureProject = async () => {
     //console.log(formData);
 
     const userToken = sessionStorage.getItem("userToken");
-    const token = sessionStorage.getItem("isConnected", true);
+    //const token = sessionStorage.getItem("userToken");
+    //const token = sessionStorage.getItem("isConnected", true);
     const appelApi = await fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
@@ -173,8 +259,8 @@ const addPictureProject = async () => {
         if (res.ok) {
             form.reset()
             previewPicture.src = "";
-            addPictureBtn.style.visibility = "hidden"
-            location.reload()
+            image.style.visibility = "hidden"
+            //location.reload()
         }
     }).catch((error) => {
         alert("Erreur:", error);
@@ -186,6 +272,11 @@ validate__modal2.addEventListener("click", async (event) => {
     event.preventDefault();
     await addPictureProject();
 });
+*/
+
+
+
+
 
 
 /*// Prévisualisation de l'image selectionné
