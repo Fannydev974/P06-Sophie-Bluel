@@ -121,7 +121,7 @@ const deletePicture = async (event) => {
 
 const addPictureBtn = document.getElementById("add__picture");
 const form = document.querySelector("#dataForm");
-const titre = document.getElementById("title").value;
+const title = document.getElementById("title").value;
 const imageAjout = document.getElementById("image");
 const previewPicture = document.querySelector("#previewPicture");
 
@@ -147,8 +147,8 @@ const changePicture = (e) => {
         }
     }
 
-    addPictureBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+    addPictureBtn.addEventListener("click", (event) => {
+        event.preventDefault();
         if (addPictureBtn) {
             addPictureBtn.click();
         }
@@ -162,7 +162,7 @@ const addPictureProject = async () => {
 
     const userToken = sessionStorage.getItem("userToken");
     //const dataToken = sessionStorage.getItem("isConnected", true);
-    const appelProjet = await fetch("http://localhost:5678/api/works", {
+    const appelApi = await fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
             Authorization: "Bearer " + userToken,
@@ -172,27 +172,19 @@ const addPictureProject = async () => {
         if (res.ok) {
             form.reset()
             previewPicture.src = "";
-
+            addPictureBtn.style.visibility = "hidden"
             location.reload()
         }
-    }).then((refresh) => {
-        if (refresh) {
-            modalWorks(arrayWorks)
-        }
-    })
+    }).catch((error) => {
+        alert("Erreur:", error);
+    });
 };
 
 
-validate__modal2.addEventListener("click", async (e) => {
-    e.preventDefault();
+validate__modal2.addEventListener("click", async (event) => {
+    event.preventDefault();
     await addPictureProject();
 });
-
-
-
-
-
-
 
 
 /*// Prévisualisation de l'image selectionné
