@@ -161,11 +161,12 @@ const addPictureProject = async () => {
     //console.log(formData);
 
     const userToken = sessionStorage.getItem("userToken");
-    //const dataToken = sessionStorage.getItem("isConnected", true);
+    const token = sessionStorage.getItem("isConnected", true);
     const appelApi = await fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + userToken,
+            Authorization: `Bearer ${userToken}`,
+            Accept: "application/json",
         },
         body: formData,
     }).then((res) => {

@@ -540,7 +540,10 @@ a {
 	margin-top: 10%;
 }
 
-
+#previewPicture {
+	display: flex;
+	margin-left: 35%;
+}
 
 /** GESTION DES icones **/
 .btn__delete {
