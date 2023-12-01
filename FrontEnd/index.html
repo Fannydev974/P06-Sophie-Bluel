@@ -126,20 +126,19 @@
 						<img id="file-ip-1-preview" src="#" alt="">
 
 						<i id="icons__img" class="fa-regular fa-image"></i>
-						<label for="image" id="add__picture__btn">+ Ajouter photo</label>
-						<input type="file" name="image" id="image" accept="image/jpg, image/png" required><br>
+						<!-- <label for="image" id="add__picture__btn">+ Ajouter photo</label> -->
+						<button class="addPictureBtn">+ Ajouter photo</button>
 						<p id="size__picture">jpg, png : 4mo max</p>
-						<p class="errorImg"></p>
+						<p class="errorImg">Cette image ne respect pas les conditions</p>
+						<input type="file" accept="image/png , image/jpg" id="inputPhoto">
 						<img id="previewPicture" alt=""></img>
 					</div>
 
 					<div class="form-img">
 						<label for="title" class="label">Titre</label>
-						<input type="text" class="labelModal" id="title" name="title">
+						<input type="text" id="titlePhoto" name="title" required="true">
 						<label for="categorie" id="choose-category" class="labelcategorie">Catégorie</label>
-
-
-						<select name="categorie" class="categorie" id="list-category">
+						<select name="categorie" class="categorie" id="photoCategory">
 							<!--<input id="categorys" name="categorys" class="formulaire" required><br>-->
 							<option value="1">Objets</option>
 							<option value="2">Appartements</option>
