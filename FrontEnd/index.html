@@ -114,45 +114,40 @@
 				<i class="fa-solid fa-xmark"></i>
 			</div>
 
-			<form id="dataForm" enctype="multipart/form-data" action='#' method="post">
-				<!--L’attribut spécifie comment les données de formulaire doivent être encodées(que avec method 'post')-->
+			<!--Ajout formulaire-->
+			<div class="container-add-img"></div>
+			<h3 id="title__modal2">Ajout photo</h3>
+			<form id="add__form">
 
-				<!--Ajout formulaire-->
-				<div class="container-add-img"></div>
-				<h3 id="title__modal2">Ajout photo</h3>
-				<form id="add__form">
+				<div id="add__picture">
+					<img id="file-ip-1-preview" src="#" alt="">
 
-					<div id="add__picture">
-						<img id="file-ip-1-preview" src="#" alt="">
+					<i id="icons__img" class="fa-regular fa-image"></i>
+					<label for="image" id="addPictureBtn">+ Ajouter photo</label>
+					<!-- <button class="addPictureBtn">+ Ajouter photo</button> -->
 
-						<i id="icons__img" class="fa-regular fa-image"></i>
-						<!-- <label for="image" id="add__picture__btn">+ Ajouter photo</label> -->
-						<button class="addPictureBtn">+ Ajouter photo</button>
-						<p id="size__picture">jpg, png : 4mo max</p>
-						<p class="errorImg">Cette image ne respect pas les conditions</p>
-						<input type="file" accept="image/png , image/jpg" id="inputPhoto">
-						<img id="previewPicture" alt=""></img>
-					</div>
+					<input type="file" accept="image/png , image/jpg" name="image" id="image" required><br>
+					<p id="size__picture">jpg, png : 4mo max</p>
+				</div>
 
-					<div class="form-img">
-						<label for="title" class="label">Titre</label>
-						<input type="text" id="titlePhoto" name="title" required="true">
-						<label for="categorie" id="choose-category" class="labelcategorie">Catégorie</label>
-						<select name="categorie" class="categorie" id="photoCategory">
-							<!--<input id="categorys" name="categorys" class="formulaire" required><br>-->
-							<option value="1">Objets</option>
-							<option value="2">Appartements</option>
-							<option value="3">Hôtel et Restaurants</option>
-						</select>
+				<div class="title-picture">
+					<label for="title" class="label-form">Titre</label>
+					<input id="title" name="title" class="fields-form" required><br>
+				</div>
+				<div class="categories-picture"></div>
+				<label for="category" id="choose-category" class="labelcategorie">Catégorie</label>
+				<select name="category" id="photoCategory">
+					<option value="1">Objets</option>
+					<option value="2">Appartements</option>
+					<option value="3">Hôtel et Restaurants</option>
+				</select>
 
-
-					</div>
-					<div class="validate__btn2">
-						<button id="validate__modal2">Valider</button>
-						<p class="error"></p>
-					</div>
-				</form>
+				<div class="validate__btn2">
+					<button type="submit" id="validateBtn2" class="fields-form">Valider</button>
+				</div>
 		</div>
+		</form>
+	</div>
 	</div>
 
 	<footer>

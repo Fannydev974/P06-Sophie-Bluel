@@ -525,7 +525,7 @@ a {
 	width: 379px;
 }
 
-#list-category {
+#photoCategory {
 
 	height: 50px;
 	font-size: 1.2em;
@@ -613,9 +613,35 @@ a {
 	display: none;
 }
 
+
+.addPictureBtn {
+	display: flex;
+	justify-content: center;
+	border: 1px #CBD6DC solid;
+	border-radius: 60px;
+	background: #CBD6DC;
+	color: #306685;
+	font-family: "Syne", sans-serif;
+	font-weight: 700;
+	font-size: 13px;
+	width: 190px;
+	height: 30px;
+	align-items: center;
+	text-align: center;
+	padding: 3px 20px;
+	margin-left: 153px;
+	margin-top: 5%;
+	cursor: pointer;
+}
+
 #size__picture {
 	display: flex;
 	justify-content: center;
+	margin-top: 2%;
+}
+
+.errorImg {
+	display: none;
 }
 
 #validate__modal2 {
@@ -649,6 +675,27 @@ a {
 
 .validateBtn {
 	background-color: #a7a7a7;
+}
+
+.validate__btn2 {
+	display: flex;
+	justify-content: center;
+}
+
+#validateBtn2 {
+	border: 1px #1d6154 solid;
+	border-radius: 60px;
+	background: #1d6154;
+	color: white;
+	font-family: "Syne", sans-serif;
+	font-weight: 700;
+	font-size: 13px;
+	width: 237px;
+	height: 35px;
+	text-align: center;
+	padding: 3px 20px;
+	margin-top: 5%;
+	cursor: pointer;
 }
 
 /** GESTION DES MESSAGES **/

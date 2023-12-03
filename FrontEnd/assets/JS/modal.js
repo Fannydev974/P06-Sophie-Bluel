@@ -117,78 +117,140 @@ const deletePicture = async (event) => {
 
 
 //***********AJOUT DE PROJET*****************//
-let addPicture = document.getElementById("add__picture");
-const inputFile = document.createElement("input");
-//L'orsque l'on click sur Ajout photo, ouvrir le file input
-addPicture.addEventListener("click", function () {
-    inputFile.click();
-});
 
-//L'orsqu'un fichié est choisi
-inputFile.addEventListener("change", function () {
-    const file = this.files[0];
+/////////////////////////////////VERIFICATION DES CHAMPS////////////////////////////
+function validateForm() {
 
-    //Vérifier le type de fichier
-    if (file.type !== "image/png" && file.type !== "image/jpg") {
-        errorMessage.style.display = "block";
-        return;
+    const validateContentForm = document.querySelectorAll(".fields-form");
+    validateContentForm.forEach((control) => control.addEventListener('change', validateForm));
+    // Récupérer les références des éléments du formulaire
+    const title = document.getElementById("title");
+    const category = document.getElementById("photoCategory");
+    const buttonValidatePhoto = document.getElementById("validate__btn2");
+
+    // Valider les champs du formulaire
+    const isTitleValid = title.value.trim() !== ""; // Vérifier si le champ titre n'est pas vide
+    const isCategoryValid = category.value.trim() !== ""; // Vérifier si le champ catégorie n'est pas vide
+
+    // Si tous les champs sont valides, changer la couleur du bouton
+    if (isTitleValid && isCategoryValid) {
+        buttonValidatePhoto.style.background = "#1D6154";
+        buttonValidatePhoto.style.cursor = "pointer";
+        buttonValidatePhoto.disabled = false;
     } else {
-        errorMessage.style.display = "none";
+        // Si au moins un champ n'est pas valide, réinitialiser la couleur du bouton
+        buttonValidatePhoto.style.background = "#a7a7a7";
+        buttonValidatePhoto.style.cursor = "not-allowed";
+        buttonValidatePhoto.disabled = true;
     }
-    //Créer une URL pour le fichier
-    const URL = URL.createObjetUrl(file);
-    //Cacher l'élément <i>
-    icons__img.style.display = "none";
-    //Créer un nouvel élément <image> et l'inserer après le file input 
-    const img = document.createElement("img");
-    img.src = URL;
-    img.classList.add("miniature-Photo");
-    previewFile.parentNode.insertBefore(img, inputFile.nextSibling);
-    //Cacher le bouton et le texte des conditions
-    addPicture.style.display = "none";
-    sizePicture.style.display = "none";
-});
-
-//Fonction uploadPhoto appelé lorsque l'on click sur Valider
-function uploadPhoto() {
-    const file = document.getElementById("inputPhoto").files[0];
-    const title = document.getElementById("titlePhoto").value;
-    const category = document.getElementById("photoCategory").value;
-    const categoryId = getCategoryId(category);
-    if (!categoryId) {
-        alert("categorie invalide");
-        return;
-    }
-    let formData = new formData();
-    formData.append("image", file);
-    formData.append("title", title);
-    formData.append("category", categoryId);
-    fetch('http://localhost:5678/api/works', {
-        method: "POST",
-        headers: {
-            Authorization: "Bearer" + sessionStorage.getItem("userToken"),
-        },
-        Body: formData
-    }).then(response => {
-        if (response.status === 201) {
-            return response.json();
-        } else if (response.status === 400) {
-            throw new Error("Requête incorrect");
-        } else if (response.status === 401) {
-            throw new Error("Non autorisé");
-        }
-    }).then(data => {
-        console.log(data);
-        switchToGalleryModale();
-        fetch('http://localhost:5678/api/works').then(response => response.json()).then(data => {
-            getWorksModal(data, modalGallery);
-        });
-        fetch('http://localhost:5678/api/works').then(response => response.json()).then(data => {
-            getWorks(data);
-        });
-        alert("Projet ajouté avec succès");
-    }).catch(error => {
-        alert("Une erreure c'est produite lors de l'ajout de la photo : " + error.message);
-        console.error(error);
-    });
 }
+
+// Ajouter un écouteur d'événement 'change' pour le formulaire
+//const form = document.getElementById("form__add");
+//form.addEventListener("change", validateForm);
+
+//////////////////////////PARTIE D'AFFICHAGE//////////////////////////////
+// Prévisualisation de l'image selectionné
+/*function previewFile() {
+    const inputPreview = document.getElementById("image");
+    inputPreview.addEventListener('change', (event) => {
+        event.preventDefault();
+        if (event.target.files.length >= 0) {
+            const src = URL.createObjectURL(event.target.files[0]);
+            const preview = document.querySelector("#file-ip-1-preview");
+            const iconImg = document.getElementById("icons__img");
+            preview.src = src;
+            // previewFile.style.display = "block";
+            iconImg.style.display = "none";
+        }
+        // displayPreview(selectedFile);
+        previewFile();
+    })
+}*/
+///////////////////////////////////
+function previewFile() {
+    //Récupérer l’élément input de type file
+    const inputPreview = document.getElementById("image");
+    const iconImg = document.getElementById("icons__img");
+
+    //Vérifier si des fichiers ont été sélectionnés
+    if (inputPreview.files.length > 0) {
+        //Récupérer le premier fichier(files[0])
+        const selectedFile = inputPreview.files[0];
+
+        //Appeler la fonction de prévisualisation avec le fichier sélectionné
+        displayPreview(selectedFile);
+        //previewFile();
+    }
+}
+
+function displayPreview(files) {
+    //Créer un objet URL pour le fichier sélectionné
+    const src = URL.createObjectURL(files);
+
+    //Sélectionner l’élément où afficher la prévisualisation
+    const preview = document.querySelector(".file-ip-1-preview");
+
+    //Mettre à jour la source et afficher la prévisualisation
+    preview.src = src;
+    //preview.style.display = "block";
+    iconImg.style.display = "none";
+}
+
+//Ajouter un écouteur d’événements 'change' pour l’input de type file
+const inputPreview = document.getElementById("image");
+inputPreview.addEventListener('change', previewFile);
+
+//////////////////////////////////////PARTIE D'AJOUT////////////////////////////////////
+function addPicture(event) {
+    event.preventDefault(); // Empêcher le comportement par défaut du formulaire
+
+    // Récupérer les références des éléments du formulaire
+    const title = document.getElementById("title");
+    const category = document.getElementById("photoCategory");
+    const imageInput = document.getElementById("image");
+    const buttonValidatePhoto = document.getElementById("validate__btn2");
+
+    // Valider les champs du formulaire
+    const isTitleValid = title.value.trim() !== "";
+    const isCategoryValid = category.value.trim() !== "";
+    const isImageSelected = imageInput.files.length > 0;
+
+    // Vérifier si tous les champs sont valides
+    if (isTitleValid && isCategoryValid && isImageSelected) {
+        // Construire le formulaire FormData pour l'envoi
+        const formData = new FormData();
+        formData.append("title", title.value);
+        formData.append("category", category.value);
+        formData.append("image", imageInput.files[0]);
+
+
+        fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${userToken}`,
+            },
+            body: formData,
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Réinitialiser le formulaire et effectuer d'autres actions nécessaires
+                    document.getElementById("add__form").reset();
+                } else {
+                    // Gérer les erreurs de réponse du serveur
+                    console.error("Erreur lors de la soumission du formulaire");
+                }
+            })
+            .catch(error => {
+                // Gérer les erreurs lors de la requête
+                console.error("Erreur de réseau:", error);
+            });
+    } else {
+        // Si au moins un champ n'est pas valide, gérer en conséquence (par exemple, afficher un message d'erreur)
+        console.error("Veuillez remplir tous les champs du formulaire");
+    }
+}
+
+// Ajouter un écouteur d'événements 'submit' pour le formulaire
+const addPictureForm = document.getElementById("add__form");
+addPictureForm.addEventListener("submit", addPicture);
