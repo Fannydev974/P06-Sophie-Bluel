@@ -27,7 +27,7 @@ const login = async () => {
                 myError.textContent = "Authentification réussie";//Si ok, le resultat donne un ID et un token
                 myError.style.color = "green"
                 sessionStorage.setItem("token", result.token)//stocker le token dans le storage
-                window.location.href = "index.html"// Redirection vers page d'acceuil
+                window.location.href = "./index.html"// Redirection vers page d'acceuil
             }
         })
 

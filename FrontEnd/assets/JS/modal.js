@@ -20,11 +20,20 @@ const closeModal = function () { modal1.style.display = 'none' };
 const openModal2 = function () {
     modal1.style.display = 'none'
     modal2.style.display = null
+    document.getElementById("add__form").reset();
+    previewPictrure();
+    validateForm();
+    previewTwo()
     document.querySelectorAll(".modal-trigger1").forEach((trigger) => {
         trigger.addEventListener("click", closeModal2);
-    });
+
+    }); if (modalReturn) {
+        modalReturn.reset();
+    }
 };
-const closeModal2 = function () { modal2.style.display = 'none' };
+const closeModal2 = function () {
+    modal2.style.display = 'none'
+};
 
 //  GESTION AU CLICK DES MODALES DE GESTIONS
 document.querySelectorAll(".openModal1").forEach((a) => {
@@ -116,32 +125,35 @@ const deletePicture = async (event) => {
 }
 
 
-//***********AJOUT DE PROJET*****************//
+/*******************************AJOUT DE PROJET********************************************/
 
-/////////////////////////////////VERIFICATION DES CHAMPS////////////////////////////
+///VERIFICATION DES CHAMPS//
 function validateForm() {
 
+    //Je selectionne tous les éléments du DOM qui ont la classe "fields-form"
     const validateContentForm = document.querySelectorAll(".fields-form");
+    //J'ajoute un eventListener de type "change" a chacun d'eux, l'orsque l'un de ses éléments change la function "validateForm" est appelée.
     validateContentForm.forEach((control) => control.addEventListener('change', validateForm));
+
     // Récupérer les références des éléments du formulaire
     const title = document.getElementById("title");
     const category = document.getElementById("photoCategory");
-    const buttonValidatePhoto = document.getElementById("validate__btn2");
+    const validateBtn2 = document.getElementById("validateBtn2");
 
     // Valider les champs du formulaire
-    const isTitleValid = title.value.trim() !== ""; // Vérifier si le champ titre n'est pas vide
-    const isCategoryValid = category.value.trim() !== ""; // Vérifier si le champ catégorie n'est pas vide
+    const isTitleValid = title.value//.trim() !== ""; // Vérifier si le champ titre n'est pas vide,isTitleValid sera vrai si la valeur du champ "title"n'est pas une chaîne de caractères vide.
+    const isCategoryValid = category.value//.trim() !== ""; // trim() pour retirer les blancs en début et fin de chaîne de caractère.
 
     // Si tous les champs sont valides, changer la couleur du bouton
     if (isTitleValid && isCategoryValid) {
-        buttonValidatePhoto.style.background = "#1D6154";
-        buttonValidatePhoto.style.cursor = "pointer";
-        buttonValidatePhoto.disabled = false;
+        validateBtn2.style.background = "#1D6154";
+        validateBtn2.style.cursor = "pointer";
+        validateBtn2.disabled = false;
     } else {
         // Si au moins un champ n'est pas valide, réinitialiser la couleur du bouton
-        buttonValidatePhoto.style.background = "#a7a7a7";
-        buttonValidatePhoto.style.cursor = "not-allowed";
-        buttonValidatePhoto.disabled = true;
+        validateBtn2.style.background = "#a7a7a7";
+        validateBtn2.style.cursor = "not-allowed";//non autorisé.
+        validateBtn2.disabled = true;
     }
 }
 
@@ -151,8 +163,10 @@ function validateForm() {
 
 //////////////////////////PARTIE D'AFFICHAGE//////////////////////////////
 // Prévisualisation de l'image selectionné
-/*function previewFile() {
+
+function previewPictrure() {
     const inputPreview = document.getElementById("image");
+
     inputPreview.addEventListener('change', (event) => {
         event.preventDefault();
         if (event.target.files.length >= 0) {
@@ -160,18 +174,25 @@ function validateForm() {
             const preview = document.querySelector("#file-ip-1-preview");
             const iconImg = document.getElementById("icons__img");
             preview.src = src;
-            // previewFile.style.display = "block";
+            preview.style.display = "block";
             iconImg.style.display = "none";
         }
-        // displayPreview(selectedFile);
-        previewFile();
     })
-}*/
+}
+
+function previewTwo() {
+    const preview = document.querySelector("#file-ip-1-preview");
+    const iconImg = document.getElementById("icons__img");
+    document.getElementById("add__form").reset();
+    preview.src = "";
+    preview.style.display = "none";
+    iconImg.style.display = "block";
+}
 ///////////////////////////////////
-function previewFile() {
+/*function previewPicture() {
     //Récupérer l’élément input de type file
     const inputPreview = document.getElementById("image");
-    const iconImg = document.getElementById("icons__img");
+    //const iconImg = document.getElementById("icons__img");
 
     //Vérifier si des fichiers ont été sélectionnés
     if (inputPreview.files.length > 0) {
@@ -192,14 +213,15 @@ function displayPreview(files) {
     const preview = document.querySelector(".file-ip-1-preview");
 
     //Mettre à jour la source et afficher la prévisualisation
-    preview.src = src;
-    //preview.style.display = "block";
+    // preview.files = src;
+    preview.style.display = "block";
     iconImg.style.display = "none";
 }
 
 //Ajouter un écouteur d’événements 'change' pour l’input de type file
 const inputPreview = document.getElementById("image");
-inputPreview.addEventListener('change', previewFile);
+inputPreview.addEventListener('change', previewFile);*/
+
 
 //////////////////////////////////////PARTIE D'AJOUT////////////////////////////////////
 function addPicture(event) {
@@ -209,12 +231,16 @@ function addPicture(event) {
     const title = document.getElementById("title");
     const category = document.getElementById("photoCategory");
     const imageInput = document.getElementById("image");
-    const buttonValidatePhoto = document.getElementById("validate__btn2");
+    const buttonValidatePhoto = document.getElementById("validateBtn2");
 
     // Valider les champs du formulaire
     const isTitleValid = title.value.trim() !== "";
     const isCategoryValid = category.value.trim() !== "";
     const isImageSelected = imageInput.files.length > 0;
+    //console.log(imageInput.files);
+    //console.log(isImageSelected);
+    //alert('test');
+    //return;
 
     // Vérifier si tous les champs sont valides
     if (isTitleValid && isCategoryValid && isImageSelected) {
@@ -223,6 +249,7 @@ function addPicture(event) {
         formData.append("title", title.value);
         formData.append("category", category.value);
         formData.append("image", imageInput.files[0]);
+
 
 
         fetch("http://localhost:5678/api/works", {
@@ -234,8 +261,11 @@ function addPicture(event) {
         })
             .then(response => {
                 if (response.ok) {
-                    // Réinitialiser le formulaire et effectuer d'autres actions nécessaires
+                    // Réinitialiser le formulaire 
                     document.getElementById("add__form").reset();
+                    previewTwo();
+                    closeModal2();
+                    getWorks();
                 } else {
                     // Gérer les erreurs de réponse du serveur
                     console.error("Erreur lors de la soumission du formulaire");
@@ -246,11 +276,12 @@ function addPicture(event) {
                 console.error("Erreur de réseau:", error);
             });
     } else {
-        // Si au moins un champ n'est pas valide, gérer en conséquence (par exemple, afficher un message d'erreur)
+        // Si au moins un champ n'est pas valide, gérer par message d'erreur
         console.error("Veuillez remplir tous les champs du formulaire");
     }
 }
 
+
 // Ajouter un écouteur d'événements 'submit' pour le formulaire
 const addPictureForm = document.getElementById("add__form");
-addPictureForm.addEventListener("submit", addPicture);
+addPictureForm.addEventListener("submit", addPicture);//envoyer
