@@ -143,9 +143,9 @@ function validateForm() {
     // Valider les champs du formulaire
     const isTitleValid = title.value//.trim() !== ""; // Vérifier si le champ titre n'est pas vide,isTitleValid sera vrai si la valeur du champ "title"n'est pas une chaîne de caractères vide.
     const isCategoryValid = category.value//.trim() !== ""; // trim() pour retirer les blancs en début et fin de chaîne de caractère.
-
+    const isImageValid = image.value//.trim() !== "";
     // Si tous les champs sont valides, changer la couleur du bouton
-    if (isTitleValid && isCategoryValid) {
+    if (isTitleValid && isCategoryValid && isImageValid) {
         validateBtn2.style.background = "#1D6154";
         validateBtn2.style.cursor = "pointer";
         validateBtn2.disabled = false;
@@ -236,14 +236,14 @@ function addPicture(event) {
     // Valider les champs du formulaire
     const isTitleValid = title.value.trim() !== "";
     const isCategoryValid = category.value.trim() !== "";
-    const isImageSelected = imageInput.files.length > 0;
+    const isImageValid = imageInput.files.length > 0;
     //console.log(imageInput.files);
     //console.log(isImageSelected);
     //alert('test');
     //return;
 
     // Vérifier si tous les champs sont valides
-    if (isTitleValid && isCategoryValid && isImageSelected) {
+    if (isTitleValid && isCategoryValid && isImageValid) {
         // Construire le formulaire FormData pour l'envoi
         const formData = new FormData();
         formData.append("title", title.value);

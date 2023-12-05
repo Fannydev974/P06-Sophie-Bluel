@@ -456,6 +456,7 @@ a {
 
 #icons__img {
 	display: none;
+
 }
 
 .overlay {
@@ -512,6 +513,11 @@ a {
 
 /***Modal 2 ***/
 
+#add__form {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
 .form-img {
 
 	margin-left: 10%;
@@ -543,6 +549,12 @@ a {
 #previewPicture {
 	display: flex;
 	margin-left: 35%;
+}
+
+/*** Gestion image de rajout***/
+#file-ip-1-preview {
+	width: 100%;
+	height: 100%;
 }
 
 /** GESTION DES icones **/
@@ -581,6 +593,7 @@ a {
 	background-color: #E8F1F6;
 	margin-top: 5%;
 	padding-bottom: 5%;
+
 }
 
 #add__picture .fa-regular {
@@ -604,8 +617,9 @@ a {
 	height: 30px;
 	align-items: center;
 	text-align: center;
-	padding: 3px 20px;
-	margin-left: 130px;
+	padding: 3px;
+	margin-left: 105px;
+	margin-top: 6px;
 	cursor: pointer;
 }
 
@@ -637,8 +651,17 @@ a {
 #size__picture {
 	display: flex;
 	justify-content: center;
-	margin-top: 2%;
+	margin-top: -3%;
+	font-size: smaller;
 }
+
+.fa-image:before {
+	display: flex;
+	justify-content: center;
+	color: #B9C5CC;
+	padding-top: 20px;
+}
+
 
 .errorImg {
 	display: none;
