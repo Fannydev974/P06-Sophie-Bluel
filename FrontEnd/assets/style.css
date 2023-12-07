@@ -376,6 +376,7 @@ a {
 }
 
 /**************Page Modifier****************/
+
 .edit-text {
 	background-color: #000;
 	color: #fff;
@@ -593,7 +594,7 @@ a {
 	background-color: #E8F1F6;
 	margin-top: 5%;
 	padding-bottom: 5%;
-
+	padding-top: 1%;
 }
 
 #add__picture .fa-regular {
@@ -604,8 +605,6 @@ a {
 }
 
 #add__picture label {
-	display: flex;
-	justify-content: center;
 	border: 1px #CBD6DC solid;
 	border-radius: 60px;
 	background: #CBD6DC;
@@ -614,10 +613,9 @@ a {
 	font-weight: 700;
 	font-size: 13px;
 	width: 190px;
-	height: 30px;
-	align-items: center;
+	height: 20px;
 	text-align: center;
-	padding: 3px;
+	padding-top: 9px;
 	margin-left: 105px;
 	margin-top: 6px;
 	cursor: pointer;
@@ -649,17 +647,17 @@ a {
 }
 
 #size__picture {
-	display: flex;
-	justify-content: center;
-	margin-top: -3%;
+
+	margin-left: 140px;
+	margin-top: -5%;
 	font-size: smaller;
 }
 
 .fa-image:before {
-	display: flex;
-	justify-content: center;
+	margin-left: 165px;
 	color: #B9C5CC;
 	padding-top: 20px;
+	font-size: larger;
 }
 
 
@@ -708,7 +706,7 @@ a {
 #validateBtn2 {
 	border: 1px #1d6154 solid;
 	border-radius: 60px;
-	background: #1d6154;
+	/*background: #1d6154;*/
 	color: white;
 	font-family: "Syne", sans-serif;
 	font-weight: 700;

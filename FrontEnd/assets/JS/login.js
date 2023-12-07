@@ -2,10 +2,10 @@
 
 const login = async () => {
     const myError = document.getElementById('Error');
-    const email = document.querySelector("#email").value;//getElementById ne fonctionne pas
+    const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
 
-    //Construction de l'objet pour la requête API via une requête POST  //
+    //Construction de l'objet pour la requête API via une requête POST 
     const user = {
         email: email,
         password: password
@@ -13,9 +13,12 @@ const login = async () => {
 
     fetch("http://localhost:5678/api/users/login", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(user)
-        //Récupération de la response JSON puis traitement de la response//
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+        //Récupération de la response JSON puis traitement de la response//*/
     })
         .then((response) => response.json())
         .then((result) => {
@@ -26,7 +29,7 @@ const login = async () => {
             else {
                 myError.textContent = "Authentification réussie";//Si ok, le resultat donne un ID et un token
                 myError.style.color = "green"
-                sessionStorage.setItem("token", result.token)//stocker le token dans le storage
+                sessionStorage.setItem("token", result.token)//stocker le token dans le sessionStorage
                 window.location.href = "./index.html"// Redirection vers page d'acceuil
             }
         })

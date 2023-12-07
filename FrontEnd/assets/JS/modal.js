@@ -145,23 +145,27 @@ function validateForm() {
     const isCategoryValid = category.value//.trim() !== ""; // trim() pour retirer les blancs en début et fin de chaîne de caractère.
     const isImageValid = image.value//.trim() !== "";
     // Si tous les champs sont valides, changer la couleur du bouton
-    if (isTitleValid && isCategoryValid && isImageValid) {
+    if (isTitleValid.value !== "" && isCategoryValid.value !== "") {
         validateBtn2.style.background = "#1D6154";
         validateBtn2.style.cursor = "pointer";
         validateBtn2.disabled = false;
-    } else {
-        // Si au moins un champ n'est pas valide, réinitialiser la couleur du bouton
+
+
+    } if (isTitleValid.value == "") {
         validateBtn2.style.background = "#a7a7a7";
-        validateBtn2.style.cursor = "not-allowed";//non autorisé.
-        validateBtn2.disabled = true;
+        validateBtn2.disabled = false;
     }
 }
 
-// Ajouter un écouteur d'événement 'change' pour le formulaire
-//const form = document.getElementById("form__add");
-//form.addEventListener("change", validateForm);
+// else {
+// Si au moins un champ n'est pas valide, réinitialiser la couleur du bouton
+//validateBtn2.style.background = "#A7A7A7";
+//validateBtn2.style.cursor = "not-allowed";//non autorisé.
+//validateBtn2.disabled = true;
 
-//////////////////////////PARTIE D'AFFICHAGE//////////////////////////////
+//}
+
+//********************************PARTIE D'AFFICHAGE****************************************//
 // Prévisualisation de l'image selectionné
 
 function previewPictrure() {
@@ -173,9 +177,13 @@ function previewPictrure() {
             const src = URL.createObjectURL(event.target.files[0]);
             const preview = document.querySelector("#file-ip-1-preview");
             const iconImg = document.getElementById("icons__img");
+            const addPictureBtn = document.getElementById("addPictureBtn");
+            const sizePicture = document.getElementById("size__picture");
             preview.src = src;
             preview.style.display = "block";
             iconImg.style.display = "none";
+            addPictureBtn.style.display = "none";
+            sizePicture.style.display = "none";
         }
     })
 }
@@ -183,47 +191,17 @@ function previewPictrure() {
 function previewTwo() {
     const preview = document.querySelector("#file-ip-1-preview");
     const iconImg = document.getElementById("icons__img");
+    const addPictureBtn = document.getElementById("addPictureBtn");
+    const sizePicture = document.getElementById("size__picture");
     document.getElementById("add__form").reset();
     preview.src = "";
     preview.style.display = "none";
     iconImg.style.display = "block";
-}
-///////////////////////////////////
-/*function previewPicture() {
-    //Récupérer l’élément input de type file
-    const inputPreview = document.getElementById("image");
-    //const iconImg = document.getElementById("icons__img");
-
-    //Vérifier si des fichiers ont été sélectionnés
-    if (inputPreview.files.length > 0) {
-        //Récupérer le premier fichier(files[0])
-        const selectedFile = inputPreview.files[0];
-
-        //Appeler la fonction de prévisualisation avec le fichier sélectionné
-        displayPreview(selectedFile);
-        //previewFile();
-    }
+    addPictureBtn.style.display = "block";
+    sizePicture.style.display = "block";
 }
 
-function displayPreview(files) {
-    //Créer un objet URL pour le fichier sélectionné
-    const src = URL.createObjectURL(files);
-
-    //Sélectionner l’élément où afficher la prévisualisation
-    const preview = document.querySelector(".file-ip-1-preview");
-
-    //Mettre à jour la source et afficher la prévisualisation
-    // preview.files = src;
-    preview.style.display = "block";
-    iconImg.style.display = "none";
-}
-
-//Ajouter un écouteur d’événements 'change' pour l’input de type file
-const inputPreview = document.getElementById("image");
-inputPreview.addEventListener('change', previewFile);*/
-
-
-//////////////////////////////////////PARTIE D'AJOUT////////////////////////////////////
+//*******************************PARTIE D'AJOUT***************************************//
 function addPicture(event) {
     event.preventDefault(); // Empêcher le comportement par défaut du formulaire
 
@@ -232,6 +210,7 @@ function addPicture(event) {
     const category = document.getElementById("photoCategory");
     const imageInput = document.getElementById("image");
     const buttonValidatePhoto = document.getElementById("validateBtn2");
+
 
     // Valider les champs du formulaire
     const isTitleValid = title.value.trim() !== "";
@@ -266,6 +245,7 @@ function addPicture(event) {
                     previewTwo();
                     closeModal2();
                     getWorks();
+                    getWorksModal();
                 } else {
                     // Gérer les erreurs de réponse du serveur
                     console.error("Erreur lors de la soumission du formulaire");
