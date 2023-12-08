@@ -18,7 +18,7 @@ const login = async () => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-        //Récupération de la response JSON puis traitement de la response//*/
+        //Récupération de la response JSON puis traitement de la response//
     })
         .then((response) => response.json())
         .then((result) => {

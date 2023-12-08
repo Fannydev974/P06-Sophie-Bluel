@@ -2,14 +2,14 @@ import { getWorks } from "./index.js"
 
 // ******************* GESTION DE L'APPARITION DE LA MODALE ******************* //
 
-const modal1 = document.querySelector(".modal-container")
-const modal2 = document.querySelector(".modal-container1")
-const modalGallery = document.querySelector(".modal_gallery")
+const modal1 = document.querySelector(".modal-container");
+const modal2 = document.querySelector(".modal-container1");
+const modalGallery = document.querySelector(".modal_gallery");
 
 
 // ***** OUVERTURE DE LA MODALE DE SUPPRESION *****//
 const openModal1 = () => {
-    modal1.style.display = null
+    modal1.style.display = null;
     document.querySelectorAll(".modal-trigger").forEach((trigger) => {
         trigger.addEventListener("click", closeModal);
     });
@@ -18,8 +18,8 @@ const closeModal = function () { modal1.style.display = 'none' };
 
 // ***** OUVERTURE DE LA MODALE D'AJOUT *****//
 const openModal2 = function () {
-    modal1.style.display = 'none'
-    modal2.style.display = null
+    modal1.style.display = 'none';
+    modal2.style.display = null;
     document.getElementById("add__form").reset();
     previewPictrure();
     validateForm();
@@ -32,7 +32,7 @@ const openModal2 = function () {
     }
 };
 const closeModal2 = function () {
-    modal2.style.display = 'none'
+    modal2.style.display = 'none';
 };
 
 //  GESTION AU CLICK DES MODALES DE GESTIONS
@@ -40,10 +40,10 @@ document.querySelectorAll(".openModal1").forEach((a) => {
     a.addEventListener("click", openModal1);
 });
 
-const btnValidate = document.querySelector(".validate-btn").addEventListener('click', openModal2)
+const btnValidate = document.querySelector(".validate-btn").addEventListener('click', openModal2);
 const modalReturn = document.querySelector(".modal-return").addEventListener('click', () => {
-    openModal1()
-    closeModal2()
+    openModal1();
+    closeModal2();
 })
 
 // ******************* GESTION DES WORKS ******************* //
@@ -54,9 +54,6 @@ const getWorksModal = async () => {
         .then((data) => { listGalleryModal = data })
         .then(() => {
             createGalleryModal();
-            // APPEL FONCTION DE SUPPRESSION DES PROJET 
-
-            // APPEL FONCTION D'AJOUT DE PROJET
         })
         .catch((error) => {
             console.error("Une erreur s'est produite lors de la récupération des travaux:", error);
@@ -89,12 +86,12 @@ const createGalleryModal = () => {
         iconDelete.classList.add("fa-solid");
         iconDelete.classList.add("fa-trash-can");
         iconDelete.setAttribute("data-projectId", project.id);
-        deleteBtn.appendChild(iconDelete)
-        figure.appendChild(deleteBtn)
+        deleteBtn.appendChild(iconDelete);
+        figure.appendChild(deleteBtn);
     });
     // Gestion au click de la suppression des projets pour chaque icones
     const iconTrashDelete = document.querySelectorAll(".fa-solid.fa-trash-can").forEach((icon) => {
-        icon.addEventListener("click", (event) => deletePicture(event))
+        icon.addEventListener("click", (event) => deletePicture(event));
     })
 
 };
@@ -116,14 +113,13 @@ const deletePicture = async (event) => {
         .then(async (response) => {
             if (response.ok) {
                 alert("Suppression du Projet");
-                await getWorksModal()
+                await getWorksModal();
                 // Appel de la fonction getWorks pour afficher la nouvelle gallerie après la suppression
-                getWorks()
+                getWorks();
             }
             else { alert("Erreur dans la suppression du projet"); }
         })
 }
-
 
 //******************************* AJOUT DE PROJET ********************************************//
 
@@ -141,9 +137,9 @@ function validateForm() {
     const validateBtn2 = document.getElementById("validateBtn2");
 
     // Valider les champs du formulaire
-    const isTitleValid = title.value//.trim() !== ""; // Vérifier si le champ titre n'est pas vide,isTitleValid sera vrai si la valeur du champ "title"n'est pas une chaîne de caractères vide.
-    const isCategoryValid = category.value//.trim() !== ""; // trim() pour retirer les blancs en début et fin de chaîne de caractère.
-    const isImageValid = image.value//.trim() !== "";
+    const isTitleValid = title.value// Vérifier si le champ titre n'est pas vide,isTitleValid sera vrai si la valeur du champ "title"n'est pas une chaîne de caractères vide.
+    const isCategoryValid = category.value
+    const isImageValid = image.value
     // Si tous les champs sont valides, changer la couleur du bouton
     if (isTitleValid.value == "") {
         validateBtn2.style.background = "#a7a7a7";
@@ -156,14 +152,6 @@ function validateForm() {
         validateBtn2.disabled = false;
     }
 }
-
-// else {
-// Si au moins un champ n'est pas valide, réinitialiser la couleur du bouton
-//validateBtn2.style.background = "#A7A7A7";
-//validateBtn2.style.cursor = "not-allowed";//non autorisé.
-//validateBtn2.disabled = true;
-
-//}
 
 //********************************PARTIE D'AFFICHAGE****************************************//
 // Prévisualisation de l'image selectionné
@@ -187,7 +175,7 @@ function previewPictrure() {
         }
     })
 }
-
+//fonction réinitialise le formulaire, et remet à 0 la src du preview
 function previewTwo() {
     const preview = document.querySelector("#file-ip-1-preview");
     const iconImg = document.getElementById("icons__img");
@@ -213,13 +201,9 @@ function addPicture(event) {
 
 
     // Valider les champs du formulaire
-    const isTitleValid = title.value.trim() !== "";
-    const isCategoryValid = category.value.trim() !== "";
+    const isTitleValid = title.value;
+    const isCategoryValid = category.value;
     const isImageValid = imageInput.files.length > 0;
-    //console.log(imageInput.files);
-    //console.log(isImageSelected);
-    //alert('test');
-    //return;
 
     // Vérifier si tous les champs sont valides
     if (isTitleValid && isCategoryValid && isImageValid) {
@@ -260,7 +244,6 @@ function addPicture(event) {
         console.error("Veuillez remplir tous les champs du formulaire");
     }
 }
-
 
 // Ajouter un écouteur d'événements 'submit' pour le formulaire
 const addPictureForm = document.getElementById("add__form");

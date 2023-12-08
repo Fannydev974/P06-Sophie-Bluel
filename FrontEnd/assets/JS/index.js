@@ -7,7 +7,7 @@ let listGallery = [];
 let listCategories = [];
 
 //Fonction getWorks pour récuperer les travaux
-export const getWorks = async () => {
+export const getWorks = async () => {//export pour modal JS
     try {
         const responseWorks = await fetch("http://localhost:5678/api/works");
         const responseCategories = await fetch("http://localhost:5678/api/categories");
@@ -99,7 +99,7 @@ const createCategory = () => {
                 spanButton.classList.add("selected");
 
 
-                // Filtrage de ma galerie au clic sur le bouton
+                // Filtrage de ma galerie 
                 if (spanButtonId == 0) {
                     createGallery(listGallery);
                 }
@@ -113,7 +113,7 @@ const createCategory = () => {
         )
 }
 
-//******************** GESTION DECONNECT LOGIN/ LOGOUT********************//
+//******************** GESTION DECONNECT LOGIN / LOGOUT********************//
 
 // Gestion du lien login dans le header 
 if (token) {

@@ -142,6 +142,10 @@ body {
 	font-size: 14px;
 }
 
+body {
+	background-color: #FFFEF8;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -377,6 +381,7 @@ a {
 
 /**************Page Modifier****************/
 
+
 .edit-text {
 	background-color: #000;
 	color: #fff;
@@ -399,26 +404,7 @@ a {
 	padding: 9px;
 }
 
-.ModalLink {
-	display: none;
-}
-
-.editor {
-	display: none;
-}
-
-.modifyEdition {
-	background-color: black;
-	display: flex;
-	justify-content: center;
-	color: #fff;
-	font-size: 25px;
-}
-
-#intro__modify {
-	margin: 10px 0 0 60px;
-}
-
+/*************Div Modifier**********/
 #modify__projets {
 	cursor: pointer;
 	margin-left: 30px;
@@ -446,20 +432,7 @@ a {
 	justify-content: center;
 }
 
-.modal2 {
-	display: none;
-}
-
-/*icone croix fermer modal*/
-.fa-xmark:before {
-	margin-right: 10px;
-}
-
-#icons__img {
-	display: none;
-
-}
-
+/* Assombrissement arrière plan de la modale*/
 .overlay {
 	position: absolute;
 	width: 100%;
@@ -467,6 +440,7 @@ a {
 	background: rgba(0, 0, 0, 0.3);
 }
 
+/* Modal 1*/
 .modal-wrapper {
 	position: absolute;
 	background: #fff;
@@ -475,6 +449,11 @@ a {
 	min-width: 300px;
 	padding: 20px;
 	border-radius: 10px;
+}
+
+/*icone croix fermer modal*/
+.fa-xmark:before {
+	margin-right: 10px;
 }
 
 .modal-wrapper h3 {
@@ -505,6 +484,7 @@ a {
 	height: 95px;
 }
 
+/*Bouton "ajouter une photo de la modal 1*/
 .validate-btn {
 	display: flex;
 	align-items: center;
@@ -519,10 +499,6 @@ a {
 	margin-right: 10%;
 }
 
-/*.form-img {
-
-	margin-left: 10%;
-}*/
 
 /************Gestion catégories page modal 2*************/
 #choose__category label {
@@ -543,11 +519,6 @@ a {
 
 }
 
-
-/*#previewPicture {
-	display: flex;
-	margin-left: 35%;
-}*/
 
 /*** Gestion image de rajout***/
 #file-ip-1-preview {
@@ -591,7 +562,7 @@ a {
 #add__picture {
 	background-color: #E8F1F6;
 	margin-top: 5%;
-	padding-bottom: 5%;
+	height: 155px;
 	padding-top: 1%;
 }
 
@@ -658,45 +629,6 @@ a {
 	font-size: smaller;
 }
 
-/*.errorImg {
-	display: none;
-}
-*/
-/*#validate__modal2 {
-	display: flex;
-	background-color: #A7A7A7;
-	justify-content: center;
-	border: 1px #A7A7A7 solid;
-	border-radius: 60px;
-	color: #fff;
-	font-family: "Syne", sans-serif;
-	font-weight: 700;
-	font-size: 13px;
-	width: 190px;
-	height: 30px;
-	align-items: center;
-	text-align: center;
-	padding: 3px 20px;
-	margin-left: 160px;
-	margin-top: 50px;
-	cursor: pointer;
-}*/
-
-/*.buttonValidatePhoto {
-	background-color: #1D6154;
-	cursor: pointer;
-}
-
-.buttonValidatePhoto {
-	background-color: #a7a7a7;
-}*/
-
-/*
-.validateBtn {
-	background-color: #a7a7a7;
-}*/
-
-
 /*******Bouton valider Ajout de projet******/
 .validate__btn2 {
 	display: flex;
@@ -718,14 +650,6 @@ a {
 	margin-top: 5%;
 	cursor: pointer;
 }
-
-/** GESTION DES MESSAGES **/
-/*.modal .validate__modal {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}*/
-
 
 /**********Bouton Ajouter photo de modal supprimer projet********/
 .validate__modal {
