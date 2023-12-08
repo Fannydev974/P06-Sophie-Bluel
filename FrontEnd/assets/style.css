@@ -519,11 +519,12 @@ a {
 	margin-right: 10%;
 }
 
-.form-img {
+/*.form-img {
 
 	margin-left: 10%;
-}
+}*/
 
+/************Gestion catégories page modal 2*************/
 #choose__category label {
 	height: 50px;
 	font-size: 1.2em;
@@ -542,15 +543,11 @@ a {
 
 }
 
-.validate__btn2 {
-	border-top: solid 1px #b3b3b3;
-	margin-top: 10%;
-}
 
-#previewPicture {
+/*#previewPicture {
 	display: flex;
 	margin-left: 35%;
-}
+}*/
 
 /*** Gestion image de rajout***/
 #file-ip-1-preview {
@@ -558,7 +555,7 @@ a {
 	height: 100%;
 }
 
-/** GESTION DES icones **/
+/** GESTION DES icones modal supprimé **/
 .btn__delete {
 	width: 17px;
 	height: 17px;
@@ -590,6 +587,7 @@ a {
 	color: #ffffff;
 }
 
+/**************Ajout projet rectangle gris entier "add__picture"***********/
 #add__picture {
 	background-color: #E8F1F6;
 	margin-top: 5%;
@@ -626,6 +624,14 @@ a {
 }
 
 
+/**********Icone, bouton, size Pour Ajout projet***********/
+.fa-image:before {
+	margin-left: 165px;
+	color: #B9C5CC;
+	padding-top: 20px;
+	font-size: larger;
+}
+
 .addPictureBtn {
 	display: flex;
 	justify-content: center;
@@ -647,25 +653,16 @@ a {
 }
 
 #size__picture {
-
 	margin-left: 140px;
 	margin-top: -5%;
 	font-size: smaller;
 }
 
-.fa-image:before {
-	margin-left: 165px;
-	color: #B9C5CC;
-	padding-top: 20px;
-	font-size: larger;
-}
-
-
-.errorImg {
+/*.errorImg {
 	display: none;
 }
-
-#validate__modal2 {
+*/
+/*#validate__modal2 {
 	display: flex;
 	background-color: #A7A7A7;
 	justify-content: center;
@@ -683,21 +680,24 @@ a {
 	margin-left: 160px;
 	margin-top: 50px;
 	cursor: pointer;
-}
+}*/
 
-.buttonValidatePhoto {
+/*.buttonValidatePhoto {
 	background-color: #1D6154;
 	cursor: pointer;
 }
 
 .buttonValidatePhoto {
 	background-color: #a7a7a7;
-}
+}*/
 
+/*
 .validateBtn {
 	background-color: #a7a7a7;
-}
+}*/
 
+
+/*******Bouton valider Ajout de projet******/
 .validate__btn2 {
 	display: flex;
 	justify-content: center;
@@ -720,12 +720,14 @@ a {
 }
 
 /** GESTION DES MESSAGES **/
-.modal .validate__modal {
+/*.modal .validate__modal {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
+}*/
 
+
+/**********Bouton Ajouter photo de modal supprimer projet********/
 .validate__modal {
 	width: 237px;
 	height: 36px;
@@ -744,4 +746,9 @@ a {
 	text-align: center;
 	padding: 3px 20px;
 	cursor: pointer;
+}
+
+.validate__btn2 {
+	border-top: solid 1px #b3b3b3;
+	margin-top: 10%;
 }

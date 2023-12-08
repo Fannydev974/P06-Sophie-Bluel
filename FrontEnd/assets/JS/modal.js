@@ -98,7 +98,7 @@ const createGalleryModal = () => {
     })
 
 };
-// ***** Suppression des works *****//
+//***** Suppression des works *****//
 const userToken = sessionStorage.getItem("token");
 
 const deletePicture = async (event) => {
@@ -125,7 +125,7 @@ const deletePicture = async (event) => {
 }
 
 
-/*******************************AJOUT DE PROJET********************************************/
+//******************************* AJOUT DE PROJET ********************************************//
 
 ///VERIFICATION DES CHAMPS//
 function validateForm() {
@@ -145,14 +145,14 @@ function validateForm() {
     const isCategoryValid = category.value//.trim() !== ""; // trim() pour retirer les blancs en début et fin de chaîne de caractère.
     const isImageValid = image.value//.trim() !== "";
     // Si tous les champs sont valides, changer la couleur du bouton
-    if (isTitleValid.value !== "" && isCategoryValid.value !== "") {
-        validateBtn2.style.background = "#1D6154";
-        validateBtn2.style.cursor = "pointer";
+    if (isTitleValid.value == "") {
+        validateBtn2.style.background = "#a7a7a7";
         validateBtn2.disabled = false;
 
 
-    } if (isTitleValid.value == "") {
-        validateBtn2.style.background = "#a7a7a7";
+    } if (isTitleValid.value !== "" && isCategoryValid.value !== "") {
+        validateBtn2.style.background = "#1D6154";
+        validateBtn2.style.cursor = "pointer";
         validateBtn2.disabled = false;
     }
 }
