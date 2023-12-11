@@ -126,6 +126,9 @@ if (token) {
     });
     const ModalLink = document.querySelector('.openModal1');
     const editor = document.querySelector('.editor-mode');
+    const modifyModal = document.querySelector('.modify');
     ModalLink.style.display = null;
-    editor.style.display = null;
+    editor.style.visibility = "visible";
+    editor.style.display = "block";
+    modifyModal.style.visibility = "visible";
 }

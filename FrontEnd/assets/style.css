@@ -235,7 +235,6 @@ link {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
-
 }
 
 .filter {
@@ -380,7 +379,9 @@ a {
 }
 
 /**************Page Modifier****************/
-
+.editor-mode {
+	visibility: hidden;
+}
 
 .edit-text {
 	background-color: #000;
@@ -396,13 +397,16 @@ a {
 	justify-content: center;
 	align-items: flex-start;
 	gap: 15px;
+	visibility: visible;
 }
 
 .openModal1 {
 	display: flex;
 	gap: 8px;
 	padding: 9px;
+	visibility: hidden;
 }
+
 
 /*************Div Modifier**********/
 #modify__projets {
@@ -430,6 +434,7 @@ a {
 	display: flex;
 	overflow: scroll;
 	justify-content: center;
+	visibility: hidden;
 }
 
 /* Assombrissement arrière plan de la modale*/
@@ -501,22 +506,13 @@ a {
 
 
 /************Gestion catégories page modal 2*************/
-#choose__category label {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-	width: 379px;
-}
-
+/*Partie ajout modal2*/
 #photoCategory {
-
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	width: 379px;
-
 }
 
 
@@ -636,9 +632,9 @@ a {
 }
 
 #validateBtn2 {
-	border: 1px #1d6154 solid;
+	border: 1px #a7a7a7 solid;
 	border-radius: 60px;
-	/*background: #1d6154;*/
+	background: #a7a7a7;
 	color: white;
 	font-family: "Syne", sans-serif;
 	font-weight: 700;

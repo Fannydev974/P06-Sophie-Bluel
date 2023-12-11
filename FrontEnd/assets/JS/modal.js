@@ -1,15 +1,15 @@
 import { getWorks } from "./index.js"
 
 // ******************* GESTION DE L'APPARITION DE LA MODALE ******************* //
-
 const modal1 = document.querySelector(".modal-container");
+modal1.style.display = "block";
 const modal2 = document.querySelector(".modal-container1");
 const modalGallery = document.querySelector(".modal_gallery");
 
 
 // ***** OUVERTURE DE LA MODALE DE SUPPRESION *****//
 const openModal1 = () => {
-    modal1.style.display = null;
+    openModal1.style.visibility = visible;
     document.querySelectorAll(".modal-trigger").forEach((trigger) => {
         trigger.addEventListener("click", closeModal);
     });
@@ -123,35 +123,30 @@ const deletePicture = async (event) => {
 
 //******************************* AJOUT DE PROJET ********************************************//
 
-///VERIFICATION DES CHAMPS//
+//Je selectionne tous les éléments du DOM qui ont la classe "fields-form"
+const validateContentForm = document.querySelectorAll(".fields-form");
+//J'ajoute un eventListener de type "change" a chacun d'eux, l'orsque l'un de ses éléments change la function "validateForm" est appelée.
+validateContentForm.forEach((control) => control.addEventListener('change', validateForm));
+
+// Récupérer les références des éléments du formulaire
+const title = document.getElementById("title");
+const category = document.getElementById("photoCategory");
+const validateBtn2 = document.getElementById("validateBtn2");
+
 function validateForm() {
+    // Vérifiez si tous les champs du formulaire sont valides
+    const isImageValid = image.value;
+    const isTitleValid = title.value;
+    const isCategoryValid = category.value;
 
-    //Je selectionne tous les éléments du DOM qui ont la classe "fields-form"
-    const validateContentForm = document.querySelectorAll(".fields-form");
-    //J'ajoute un eventListener de type "change" a chacun d'eux, l'orsque l'un de ses éléments change la function "validateForm" est appelée.
-    validateContentForm.forEach((control) => control.addEventListener('change', validateForm));
-
-    // Récupérer les références des éléments du formulaire
-    const title = document.getElementById("title");
-    const category = document.getElementById("photoCategory");
-    const validateBtn2 = document.getElementById("validateBtn2");
-
-    // Valider les champs du formulaire
-    const isTitleValid = title.value// Vérifier si le champ titre n'est pas vide,isTitleValid sera vrai si la valeur du champ "title"n'est pas une chaîne de caractères vide.
-    const isCategoryValid = category.value
-    const isImageValid = image.value
-    // Si tous les champs sont valides, changer la couleur du bouton
-    if (isTitleValid.value == "") {
-        validateBtn2.style.background = "#a7a7a7";
-        validateBtn2.disabled = false;
-
-
-    } if (isTitleValid.value !== "" && isCategoryValid.value !== "") {
-        validateBtn2.style.background = "#1D6154";
-        validateBtn2.style.cursor = "pointer";
-        validateBtn2.disabled = false;
+    // Changer la couleur du bouton en fonction de la validité du formulaire
+    if (isImageValid && isTitleValid && isCategoryValid) {
+        validateBtn2.style.backgroundColor = '#1D6154'; // Changer la couleur en vert
+    } else {
+        validateBtn2.style.backgroundColor = '#a7a7a7'; // Changer la couleur en gris
     }
 }
+
 
 //********************************PARTIE D'AFFICHAGE****************************************//
 // Prévisualisation de l'image selectionné
@@ -230,6 +225,7 @@ function addPicture(event) {
                     closeModal2();
                     getWorks();
                     getWorksModal();
+
                 } else {
                     // Gérer les erreurs de réponse du serveur
                     console.error("Erreur lors de la soumission du formulaire");
