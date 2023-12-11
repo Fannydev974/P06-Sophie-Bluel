@@ -5,6 +5,12 @@ const login = async () => {
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
 
+
+    if (!email || !password) {
+        myError.textContent = "Veuillez renseigner l'email et le mot de passe ";
+        myError.style.color = "red"
+        return
+    }
     //Construction de l'objet pour la requête API via une requête POST 
     const user = {
         email: email,

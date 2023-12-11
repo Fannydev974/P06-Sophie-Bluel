@@ -2,14 +2,13 @@ import { getWorks } from "./index.js"
 
 // ******************* GESTION DE L'APPARITION DE LA MODALE ******************* //
 const modal1 = document.querySelector(".modal-container");
-modal1.style.display = "block";
 const modal2 = document.querySelector(".modal-container1");
 const modalGallery = document.querySelector(".modal_gallery");
 
 
 // ***** OUVERTURE DE LA MODALE DE SUPPRESION *****//
 const openModal1 = () => {
-    openModal1.style.visibility = visible;
+    modal1.style.display = "flex";
     document.querySelectorAll(".modal-trigger").forEach((trigger) => {
         trigger.addEventListener("click", closeModal);
     });
@@ -19,7 +18,7 @@ const closeModal = function () { modal1.style.display = 'none' };
 // ***** OUVERTURE DE LA MODALE D'AJOUT *****//
 const openModal2 = function () {
     modal1.style.display = 'none';
-    modal2.style.display = null;
+    modal2.style.display = "flex";
     document.getElementById("add__form").reset();
     previewPictrure();
     validateForm();
@@ -36,9 +35,7 @@ const closeModal2 = function () {
 };
 
 //  GESTION AU CLICK DES MODALES DE GESTIONS
-document.querySelectorAll(".openModal1").forEach((a) => {
-    a.addEventListener("click", openModal1);
-});
+document.getElementById("openModal1").addEventListener("click", openModal1);
 
 const btnValidate = document.querySelector(".validate-btn").addEventListener('click', openModal2);
 const modalReturn = document.querySelector(".modal-return").addEventListener('click', () => {
@@ -95,6 +92,7 @@ const createGalleryModal = () => {
     })
 
 };
+
 //***** Suppression des works *****//
 const userToken = sessionStorage.getItem("token");
 

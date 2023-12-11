@@ -57,7 +57,7 @@
 			<!--Partie modifier page de connexion-->
 			<div class="modify">
 				<h2>Mes Projets</h2>
-				<a href="#" class="openModal1"><i class=" fa-regular
+				<a href="#" id="openModal1"><i class=" fa-regular
 					fa-pen-to-square"></i>Modifier</a>
 			</div>
 			<div class="btnFilter"></div>
@@ -102,7 +102,7 @@
 	</div>
 
 	<div class="modal-container1">
-		<div class="overlay modal-trigger1"></div>
+		<div class=" overlay modal-trigger1"></div>
 
 		<div class="modal-wrapper">
 
@@ -126,7 +126,7 @@
 					<label for="image" id="addPictureBtn">+ Ajouter photo</label>
 
 
-					<input type="file" accept="image/png , image/jpg" id="image" required><br>
+					<input type="file" class="fields-form" accept="image/png , image/jpg" id="image" required><br>
 					<p id="size__picture">jpg, png : 4mo max</p>
 				</div>
 
@@ -136,7 +136,7 @@
 				</div>
 				<div class="categories-picture"></div>
 				<label for="category" id="choose-category" class="list-categorie">Catégorie</label>
-				<select name="category" id="photoCategory">
+				<select name="category" id="photoCategory" class="fields-form">
 					<option value="1">Objets</option>
 					<option value="2">Appartements</option>
 					<option value="3">Hôtel et Restaurants</option>
@@ -145,10 +145,10 @@
 				<div class="validate__btn2">
 					<button type="submit" id="validateBtn2" class="fields-form">Valider</button>
 				</div>
+			</form>
 		</div>
-		</form>
 	</div>
-	</div>
+
 
 	<footer>
 		<nav>

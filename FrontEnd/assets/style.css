@@ -395,30 +395,16 @@ a {
 .modify {
 	display: flex;
 	justify-content: center;
-	align-items: flex-start;
 	gap: 15px;
-	visibility: visible;
 }
 
-.openModal1 {
-	display: flex;
-	gap: 8px;
-	padding: 9px;
-	visibility: hidden;
-}
-
-
-/*************Div Modifier**********/
-#modify__projets {
-	cursor: pointer;
-	margin-left: 30px;
-	margin-bottom: 30px;
-	display: flex;
+.modify a {
+	display: none;
 	justify-content: center;
-}
-
-#modify__projects i {
-	margin-right: 5px;
+	align-items: flex-start;
+	gap: 8px;
+	font-size: small;
+	padding: 9px;
 }
 
 
@@ -431,10 +417,10 @@ a {
 	/* Position */
 	position: fixed;
 	top: 0;
-	display: flex;
+	display: none;
 	overflow: scroll;
 	justify-content: center;
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 /* Assombrissement arrière plan de la modale*/
@@ -520,6 +506,7 @@ a {
 #file-ip-1-preview {
 	width: 100%;
 	height: 100%;
+	object-fit: contain;
 }
 
 /** GESTION DES icones modal supprimé **/

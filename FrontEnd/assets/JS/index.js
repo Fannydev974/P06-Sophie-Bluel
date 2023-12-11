@@ -124,11 +124,11 @@ if (token) {
         // Suppresion de token & Redirection
         sessionStorage.removeItem("token");
     });
-    const ModalLink = document.querySelector('.openModal1');
+    const ModalLink = document.getElementById('openModal1');
     const editor = document.querySelector('.editor-mode');
-    const modifyModal = document.querySelector('.modify');
-    ModalLink.style.display = null;
+
+    ModalLink.style.display = "flex";
     editor.style.visibility = "visible";
     editor.style.display = "block";
-    modifyModal.style.visibility = "visible";
+
 }
