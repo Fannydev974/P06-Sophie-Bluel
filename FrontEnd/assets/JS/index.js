@@ -24,14 +24,13 @@ export const getWorks = async () => {//export pour modal JS
             createCategory();
         }
         createGallery(listGallery);
-        // createGalleryModal(listGalleryModal);
-        //getWorksModal();
+
     } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des travaux et des catégories :", error);
     }
     //Ajout "try-catch"regroupe des instructions à exécuter et définit une réponse si une erreure lors de la récupération des travaux depuis l'API
 }
-getWorks();
+getWorks();//Appel de la fonction "getWorks" pour créer la gallery d'image
 
 //fonction pour créer la gallerie et pouvoir supprimer la gallerie du HTML
 const createGallery = (arrayGallery) => {
@@ -93,7 +92,7 @@ const createCategory = () => {
                 const active = document.querySelector(".selected");
                 const spanButton = event.target
                 const spanButtonId = parseInt(spanButton.getAttribute("data-idCategory"))//reconvertir en chiffre
-                console.log(spanButtonId)
+                //console.log(spanButtonId)
 
                 active.classList.remove("selected");
                 spanButton.classList.add("selected");
@@ -130,5 +129,4 @@ if (token) {
     ModalLink.style.display = "flex";
     editor.style.visibility = "visible";
     editor.style.display = "block";
-
 }

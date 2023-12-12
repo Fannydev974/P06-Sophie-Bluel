@@ -1,4 +1,4 @@
-import { getWorks } from "./index.js"
+import { getWorks } from "./index.js"//import export pour actualiser la modal de l'index
 
 // ******************* GESTION DE L'APPARITION DE LA MODALE ******************* //
 const modal1 = document.querySelector(".modal-container");
